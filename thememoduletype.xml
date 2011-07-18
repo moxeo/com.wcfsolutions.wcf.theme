@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.wcfsolutions.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.wcfsolutions.com/XSD/theme-module-type.xsd">
+	<import>
+		<type>
+			<name>html</name>
+			<category>text</category>
+			<classfile>lib/data/theme/module/type/HTMLThemeModuleType.class.php</classfile>
+		</type>
+	</import>
+</data>

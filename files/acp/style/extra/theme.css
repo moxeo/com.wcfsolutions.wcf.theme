@@ -1,0 +1,20 @@
+
+/* ### -- -- -- -- -- Theme ACP Styles -- -- -- -- -- ### */
+
+/* 
+
+File: theme.css 
+Copyright 2009-2011 by wcfsolutions.com
+
+*/
+
+/* ### -- -- -- -- -- General -- -- -- -- -- ### */
+
+.themeSort:after {
+	content: "";
+	height: 0;
+	display: block;
+	clear: both;
+}
+
+/* ### -- -- -- -- -- EOF -- -- -- -- -- ### */

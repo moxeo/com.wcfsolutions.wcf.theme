@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/acp-menu.xsd">
+	<import>
+		<acpmenuitem name="wcf.acp.menu.link.theme">
+			<parent>wcf.acp.menu.link.display</parent>
+			<showorder>1</showorder>
+		</acpmenuitem>	
+		<acpmenuitem name="wcf.acp.menu.link.theme.view">
+			<parent>wcf.acp.menu.link.theme</parent>
+			<showorder>1</showorder>
+			<link>index.php?page=ThemeList</link>
+			<icon>icon/themeM.png</icon>
+			<permissions>admin.theme.canEditTheme,admin.theme.canDeleteTheme</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.add">
+			<parent>wcf.acp.menu.link.theme</parent>
+			<showorder>2</showorder>
+			<link>index.php?form=ThemeAdd</link>
+			<permissions>admin.theme.canAddTheme</permissions> 
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.import">
+			<parent>wcf.acp.menu.link.theme</parent>
+			<showorder>3</showorder>
+			<link>index.php?form=ThemeImport</link>
+			<permissions>admin.theme.canImportTheme</permissions> 
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.module">
+			<parent>wcf.acp.menu.link.theme</parent>
+			<showorder>4</showorder>
+		</acpmenuitem>	
+		<acpmenuitem name="wcf.acp.menu.link.theme.module.view">
+			<parent>wcf.acp.menu.link.theme.module</parent>
+			<showorder>1</showorder>
+			<link>index.php?page=ThemeModuleList</link>
+			<icon>icon/themeModuleM.png</icon>
+			<permissions>admin.theme.canEditThemeModule,admin.theme.canDeleteThemeModule</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.module.add">
+			<parent>wcf.acp.menu.link.theme.module</parent>
+			<showorder>2</showorder>
+			<link>index.php?form=ThemeModuleAdd</link>
+			<permissions>admin.theme.canAddThemeModule</permissions> 
+		</acpmenuitem>		
+		<acpmenuitem name="wcf.acp.menu.link.theme.layout">
+			<parent>wcf.acp.menu.link.theme</parent>
+			<showorder>5</showorder>
+		</acpmenuitem>	
+		<acpmenuitem name="wcf.acp.menu.link.theme.layout.view">
+			<parent>wcf.acp.menu.link.theme.layout</parent>
+			<showorder>1</showorder>
+			<link>index.php?page=ThemeLayoutList</link>
+			<icon>icon/themeLayoutM.png</icon>
+			<permissions>admin.theme.canEditThemeLayout,admin.theme.canDeleteThemeLayout</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.layout.add">
+			<parent>wcf.acp.menu.link.theme.layout</parent>
+			<showorder>2</showorder>
+			<link>index.php?form=ThemeLayoutAdd</link>
+			<permissions>admin.theme.canAddThemeLayout</permissions> 
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.theme.layout.moduleAssignment">
+			<parent>wcf.acp.menu.link.theme.layout</parent>
+			<showorder>3</showorder>
+			<link>index.php?page=ThemeLayoutModuleAssignment</link>
+			<permissions>admin.theme.canEditThemeLayout</permissions> 
+		</acpmenuitem>
+	</import>
+</data>

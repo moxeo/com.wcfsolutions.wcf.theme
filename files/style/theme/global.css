@@ -1,0 +1,83 @@
+
+/* ### -- -- -- -- -- Global Theme Styles -- -- -- -- -- ### */
+
+/*
+
+File: global.css 
+Copyright 2009-2011 by wcfsolutions.com
+
+*/
+
+/* ### -- -- -- -- -- Miscellaneous -- -- -- -- -- ### */
+
+* {
+	unicode-bidi: embed;
+	text-overflow: ellipsis;
+}
+
+body, html {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#main {
+	padding: 10px 0 20px 0;	
+}
+
+#main:after {
+	clear: both;
+	display: block;
+	height: 0;
+	content: "";
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+pre {
+	font-family: "Courier New", Courier, monospace !important;
+}
+
+img {
+	vertical-align: middle;
+	border: 0;
+}
+
+hr {
+	display: none;
+}
+
+.hidden { /* Moves elements out of the viewport in an accessible way and preserves no space for them. Use this class rather than "display: none"! */
+	height: 0;
+	overflow: hidden;
+	position: absolute;
+	left: -9000px;
+	max-width: 8000px;
+}
+
+.dragable * {
+	cursor: move;
+}
+
+.loading {
+	background-color: #fff;
+	background-image: url("../images/spinner.gif");
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	min-height: 80px;
+	opacity: .5;	
+}
+
+/* ### -- -- -- -- -- Links -- -- -- -- -- ### */
+
+a {
+	cursor: pointer;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* ### -- -- -- -- -- EOF -- -- -- -- -- ### */
