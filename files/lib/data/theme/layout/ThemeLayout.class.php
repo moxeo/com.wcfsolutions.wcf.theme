@@ -83,6 +83,8 @@ class ThemeLayout extends DatabaseObject {
 	
 	/**
 	 * Caches all modules of this theme layout.
+	 * 
+	 * @param	array		$additionalData
 	 */
 	public function cacheModules($additionalData = array()) {
 		if (self::$themeModules === null) self::$themeModules = WCF::getCache()->get('themeModule-'.PACKAGE_ID);
@@ -104,10 +106,11 @@ class ThemeLayout extends DatabaseObject {
 	/**
 	 * Returns all modules of the given theme module position.
 	 * 
-	 * @param	string		$themeModulePosition
+	 * @param	string			$themeModulePosition
+	 * @param	array			$additionalData
 	 * @return	array<ThemeModule>
 	 */
-	public function getModules($themeModulePosition) {
+	public function getModules($themeModulePosition, $additionalData = array()) {
 		if (self::$themeModules === null) self::$themeModules = WCF::getCache()->get('themeModule-'.PACKAGE_ID);
 		if (self::$themeModuleToLayouts === null) self::$themeModuleToLayouts = WCF::getCache()->get('themeLayout-'.PACKAGE_ID, 'modules');
 		
@@ -115,7 +118,10 @@ class ThemeLayout extends DatabaseObject {
 		if (isset(self::$themeModuleToLayouts[$this->themeLayoutID][$themeModulePosition])) {
 			foreach (self::$themeModuleToLayouts[$this->themeLayoutID][$themeModulePosition] as $themeModuleData) {
 				$themeModuleID = $themeModuleData['themeModuleID'];
-				$themeModules[] = self::$themeModules[$themeModuleID];
+				$themeModule = self::$themeModules[$themeModuleID];
+				if ($themeModule->getThemeModuleType()->hasContent($themeModule, $themeModulePosition, $additionalData)) {
+					$themeModules[] = $themeModule;
+				}
 			}
 		}
 		

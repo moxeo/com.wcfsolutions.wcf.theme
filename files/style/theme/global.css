@@ -8,11 +8,14 @@ Copyright 2009-2011 by wcfsolutions.com
 
 */
 
-/* ### -- -- -- -- -- Miscellaneous -- -- -- -- -- ### */
+/* ### -- -- -- -- -- Some global resets / defaults  -- -- -- -- -- ### */
 
-* {
-	unicode-bidi: embed;
-	text-overflow: ellipsis;
+body, textarea {
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+}
+
+body {
+	font-size: 0.8em;
 }
 
 body, html {
@@ -20,20 +23,33 @@ body, html {
 	padding: 0 !important;
 }
 
-#main {
-	padding: 10px 0 20px 0;	
-}
-
-#main:after {
-	clear: both;
-	display: block;
-	height: 0;
-	content: "";
-}
-
 p {
 	margin: 0;
 	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-size: 1em;
+	font-weight: normal;
+	text-align: left;
+	padding: 0;
+	margin: 1px 0 12px 0;
+}
+
+select, textarea {
+	font-size: 0.85em;
+}
+
+h1 {
+	font-size: 1.75em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.25em;
 }
 
 pre {
@@ -48,6 +64,18 @@ img {
 hr {
 	display: none;
 }
+
+a {
+	color: #000;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* ### -- -- -- -- -- Miscellaneous -- -- -- -- -- ### */
 
 .hidden { /* Moves elements out of the viewport in an accessible way and preserves no space for them. Use this class rather than "display: none"! */
 	height: 0;
@@ -68,16 +96,6 @@ hr {
 	background-repeat: no-repeat;
 	min-height: 80px;
 	opacity: .5;	
-}
-
-/* ### -- -- -- -- -- Links -- -- -- -- -- ### */
-
-a {
-	cursor: pointer;
-}
-
-a:hover {
-	text-decoration: none;
 }
 
 /* ### -- -- -- -- -- EOF -- -- -- -- -- ### */
