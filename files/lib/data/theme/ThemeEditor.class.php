@@ -71,7 +71,7 @@ class ThemeEditor extends Theme {
 		$themeTar = new TarWriter($themeTarName, true);
 		
 		// create theme info file
-		$string = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<theme xmlns=\"http://www.wcfsolutions.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.wcfsolutions.com/XSD/theme.xsd\">\n";
+		$string = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<theme xmlns=\"http://www.wcfsolutions.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.wcfsolutions.com http://www.wcfsolutions.com/XSD/theme.xsd\">\n";
 		
 		// general block
 		$string .= "\t<general>\n";
