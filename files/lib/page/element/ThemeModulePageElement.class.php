@@ -50,7 +50,7 @@ abstract class ThemeModulePageElement extends AbstractPageElement {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

@@ -25,7 +25,7 @@ class ThemeEditForm extends ThemeAddForm {
 	public $themeID = 0;
 	
 	/**
-	 * @see Page::readParameters()
+	 * @see	Page::readParameters()
 	 */
 	public function readParameters() {
 		parent::readParameters();
@@ -36,7 +36,7 @@ class ThemeEditForm extends ThemeAddForm {
 	}
 	
 	/**
-	 * @see Page::readData()
+	 * @see	Page::readData()
 	 */
 	public function readData() {
 		parent::readData();
@@ -57,7 +57,7 @@ class ThemeEditForm extends ThemeAddForm {
 	}
 	
 	/**
-	 * @see Form::save()
+	 * @see	Form::save()
 	 */
 	public function save() {
 		AbstractForm::save();
@@ -74,7 +74,7 @@ class ThemeEditForm extends ThemeAddForm {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

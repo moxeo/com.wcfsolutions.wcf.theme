@@ -46,7 +46,7 @@ class ThemeLayoutAddForm extends ACPForm {
 	public $styleSheets = '';
 	
 	/**
-	 * @see Page::readParameters()
+	 * @see	Page::readParameters()
 	 */
 	public function readParameters() {
 		parent::readParameters();
@@ -59,7 +59,7 @@ class ThemeLayoutAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::readFormParameters()
+	 * @see	Form::readFormParameters()
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
@@ -69,7 +69,7 @@ class ThemeLayoutAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::validate()
+	 * @see	Form::validate()
 	 */
 	public function validate() {
 		parent::validate();		
@@ -81,7 +81,7 @@ class ThemeLayoutAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::save()
+	 * @see	Form::save()
 	 */
 	public function save() {
 		parent::save();
@@ -102,7 +102,7 @@ class ThemeLayoutAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

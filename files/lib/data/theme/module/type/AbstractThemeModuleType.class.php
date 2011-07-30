@@ -57,36 +57,36 @@ class AbstractThemeModuleType implements ThemeModuleType {
 	
 	// form methods
 	/**
-	 * @see ThemeModuleType::readFormParameters()
+	 * @see	ThemeModuleType::readFormParameters()
 	 */
 	public function readFormParameters() {}
 	
 	/**
-	 * @see ThemeModuleType::validate()
+	 * @see	ThemeModuleType::validate()
 	 */
 	public function validate() {}
 	
 	/**
-	 * @see ThemeModuleType::getFormData()
+	 * @see	ThemeModuleType::getFormData()
 	 */
 	public function getFormData() {
 		return $this->formData;
 	}
 	
 	/**
-	 * @see ThemeModuleType::readFormData()
+	 * @see	ThemeModuleType::readFormData()
 	 */
 	public function setFormData($data) {
 		$this->formData = $data;
 	}
 	
 	/**
-	 * @see ThemeModuleType::assignVariables()
+	 * @see	ThemeModuleType::assignVariables()
 	 */
 	public function assignVariables() {}
 	
 	/**
-	 * @see ThemeModuleType::getFormTemplateName()
+	 * @see	ThemeModuleType::getFormTemplateName()
 	 */
 	public function getFormTemplateName() {
 		return '';

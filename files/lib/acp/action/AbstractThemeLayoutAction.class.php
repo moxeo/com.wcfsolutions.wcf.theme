@@ -29,7 +29,7 @@ class AbstractThemeLayoutAction extends AbstractAction {
 	public $themeLayout = null;
 	
 	/**
-	 * @see Action::readParameters()
+	 * @see	Action::readParameters()
 	 */
 	public function readParameters() {
 		parent::readParameters();

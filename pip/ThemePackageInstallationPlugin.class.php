@@ -17,7 +17,7 @@ class ThemePackageInstallationPlugin extends AbstractPackageInstallationPlugin {
 	public $tableName = 'theme';
 	
 	/** 
-	 * @see PackageInstallationPlugin::install()
+	 * @see	PackageInstallationPlugin::install()
 	 */
 	public function install() {
 		parent::install();
@@ -37,7 +37,7 @@ class ThemePackageInstallationPlugin extends AbstractPackageInstallationPlugin {
 	}
 	
 	/** 
-	 * @see PackageInstallationPlugin::uninstall()
+	 * @see	PackageInstallationPlugin::uninstall()
 	 */
 	public function uninstall() {
 		// call uninstall event

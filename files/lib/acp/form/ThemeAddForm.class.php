@@ -47,7 +47,7 @@ class ThemeAddForm extends ACPForm {
 	public $authorURL = '';
 	
 	/**
-	 * @see Page::readParameters()
+	 * @see	Page::readParameters()
 	 */
 	public function readParameters() {
 		parent::readParameters();
@@ -57,7 +57,7 @@ class ThemeAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Page::readData()
+	 * @see	Page::readData()
 	 */
 	public function readData() {
 		parent::readData();
@@ -66,7 +66,7 @@ class ThemeAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::readFormParameters()
+	 * @see	Form::readFormParameters()
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
@@ -84,7 +84,7 @@ class ThemeAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::validate()
+	 * @see	Form::validate()
 	 */
 	public function validate() {
 		parent::validate();		
@@ -110,7 +110,7 @@ class ThemeAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::save()
+	 * @see	Form::save()
 	 */
 	public function save() {
 		parent::save();
@@ -132,7 +132,7 @@ class ThemeAddForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

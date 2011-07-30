@@ -22,7 +22,7 @@ class ThemeLayoutList extends DatabaseObjectList {
 	public $themeLayouts = array();
 	
 	/**
-	 * @see DatabaseObjectList::countObjects()
+	 * @see	DatabaseObjectList::countObjects()
 	 */
 	public function countObjects() {
 		$sql = "SELECT	COUNT(*) AS count
@@ -33,7 +33,7 @@ class ThemeLayoutList extends DatabaseObjectList {
 	}
 	
 	/**
-	 * @see DatabaseObjectList::readObjects()
+	 * @see	DatabaseObjectList::readObjects()
 	 */
 	public function readObjects() {
 		$sql = "SELECT		".(!empty($this->sqlSelects) ? $this->sqlSelects.',' : '')."
@@ -50,7 +50,7 @@ class ThemeLayoutList extends DatabaseObjectList {
 	}
 	
 	/**
-	 * @see DatabaseObjectList::getObjects()
+	 * @see	DatabaseObjectList::getObjects()
 	 */
 	public function getObjects() {
 		return $this->themeLayouts;

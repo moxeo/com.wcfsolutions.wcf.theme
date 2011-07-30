@@ -14,7 +14,7 @@ require_once(WCF_DIR.'lib/acp/action/AbstractThemeLayoutAction.class.php');
  */
 class ThemeLayoutDeleteAction extends AbstractThemeLayoutAction {
 	/**
-	 * @see Action::execute()
+	 * @see	Action::execute()
 	 */
 	public function execute() {
 		parent::execute();

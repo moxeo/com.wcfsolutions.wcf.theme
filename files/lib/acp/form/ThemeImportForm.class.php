@@ -38,7 +38,7 @@ class ThemeImportForm extends ACPForm {
 	public $themeUpload;
 	
 	/**
-	 * @see Form::readFormParameters()
+	 * @see	Form::readFormParameters()
 	 */
 	public function readFormParameters() {
 		parent::readFormParameters();
@@ -48,7 +48,7 @@ class ThemeImportForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::validate()
+	 * @see	Form::validate()
 	 */
 	public function validate() {
 		parent::validate();		
@@ -99,7 +99,7 @@ class ThemeImportForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Form::save()
+	 * @see	Form::save()
 	 */
 	public function save() {
 		parent::save();
@@ -121,7 +121,7 @@ class ThemeImportForm extends ACPForm {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

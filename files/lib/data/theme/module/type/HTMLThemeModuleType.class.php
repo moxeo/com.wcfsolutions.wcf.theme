@@ -41,7 +41,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 	
 	// form methods
 	/**
-	 * @see ThemeModuleType::readFormParameters()
+	 * @see	ThemeModuleType::readFormParameters()
 	 */
 	public function readFormParameters() {
 		$this->formData['code'] = '';
@@ -49,7 +49,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 	}
 	
 	/**
-	 * @see ThemeModuleType::validate()
+	 * @see	ThemeModuleType::validate()
 	 */
 	public function validate() {
 		// code
@@ -72,7 +72,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 	}
 	
 	/**
-	 * @see ThemeModuleType::assignVariables()
+	 * @see	ThemeModuleType::assignVariables()
 	 */
 	public function assignVariables() {
 		WCF::getTPL()->assign(array(
@@ -81,7 +81,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 	}
 	
 	/**
-	 * @see ThemeModuleType::getFormTemplateName()
+	 * @see	ThemeModuleType::getFormTemplateName()
 	 */
 	public function getFormTemplateName() {
 		return 'htmlThemeModuleType';

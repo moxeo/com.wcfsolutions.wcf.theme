@@ -22,7 +22,7 @@ abstract class AbstractPageElement extends MultipleLinkPage implements PageEleme
 	public $content = '';
 	
 	/**
-	 * @see Page::show()
+	 * @see	Page::show()
 	 */
 	public function show() {
 		if (empty($this->neededPermissions) || WCF::getUser()->getPermission($this->neededPermissions)) {
@@ -43,7 +43,7 @@ abstract class AbstractPageElement extends MultipleLinkPage implements PageEleme
 	}
 	
 	/**
-	 * @see PageElement::getContent()
+	 * @see	PageElement::getContent()
 	 */
 	public function getContent() {
 		// call getContent event

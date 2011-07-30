@@ -14,7 +14,7 @@ require_once(WCF_DIR.'lib/acp/action/AbstractThemeModuleAction.class.php');
  */
 class ThemeModuleDeleteAction extends AbstractThemeModuleAction {
 	/**
-	 * @see Action::execute()
+	 * @see	Action::execute()
 	 */
 	public function execute() {
 		parent::execute();

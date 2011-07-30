@@ -25,7 +25,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 	public $themeLayoutID = 0;
 	
 	/**
-	 * @see Page::readParameters()
+	 * @see	Page::readParameters()
 	 */
 	public function readParameters() {
 		ACPForm::readParameters();
@@ -36,7 +36,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 	}
 	
 	/**
-	 * @see Page::readData()
+	 * @see	Page::readData()
 	 */
 	public function readData() {
 		parent::readData();
@@ -49,7 +49,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 	}
 	
 	/**
-	 * @see Form::save()
+	 * @see	Form::save()
 	 */
 	public function save() {
 		AbstractForm::save();
@@ -66,7 +66,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 	}
 	
 	/**
-	 * @see Page::assignVariables()
+	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
 		parent::assignVariables();

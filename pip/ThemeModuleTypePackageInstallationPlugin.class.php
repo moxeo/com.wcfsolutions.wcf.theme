@@ -18,7 +18,7 @@ class ThemeModuleTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 	public $tableName = 'theme_module_type';
 	
 	/** 
-	 * @see PackageInstallationPlugin::install()
+	 * @see	PackageInstallationPlugin::install()
 	 */
 	public function install() {
 		parent::install();

@@ -14,7 +14,7 @@ require_once(WCF_DIR.'lib/system/cache/CacheBuilder.class.php');
  */
 class CacheBuilderTheme implements CacheBuilder {
 	/**
-	 * @see CacheBuilder::getData()
+	 * @see	CacheBuilder::getData()
 	 */
 	public function getData($cacheResource) {
 		list($cache, $packageID) = explode('-', $cacheResource['cache']); 
