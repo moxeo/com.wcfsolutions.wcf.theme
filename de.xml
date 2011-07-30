@@ -128,6 +128,7 @@
 		<item name="wcf.acp.theme.module.general"><![CDATA[Allgemeine Daten]]></item>
 		<item name="wcf.acp.theme.module.html.code"><![CDATA[HTML-Code]]></item>
 		<item name="wcf.acp.theme.module.html.code.description"><![CDATA[Geben Sie hier den HTML-Code für das Modul an.]]></item>
+		<item name="wcf.acp.theme.module.html.code.error.syntaxError"><![CDATA[Der eingegebene dynamische Template-Code enthält Fehler.]]></item>
 		<item name="wcf.acp.theme.module.html.data"><![CDATA[Daten]]></item>
 		<item name="wcf.acp.theme.module.preview"><![CDATA[Vorschau]]></item>
 		<item name="wcf.acp.theme.module.themeID"><![CDATA[Theme]]></item>
