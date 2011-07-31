@@ -50,6 +50,24 @@ abstract class ThemeModuleFormElement extends AbstractFormElement {
 	}
 	
 	/**
+	 * @see Form::submit()
+	 */
+	public function submit() {
+		// get submitting theme module id
+		$themeModuleID = 0;
+		if (isset($_POST['themeModuleID'])) $themeModuleID = intval($_POST['themeModuleID']);
+		
+		// get submitting theme module position
+		$themeModulePosition = '';
+		if (isset($_POST['themeModulePosition'])) $themeModulePosition = $_POST['themeModulePosition'];
+		
+		// submit
+		if ($themeModuleID == $this->themeModule->themeModuleID && $themeModulePosition == $this->themeModulePosition) {
+			parent::submit();
+		}
+	}
+	
+	/**
 	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {
