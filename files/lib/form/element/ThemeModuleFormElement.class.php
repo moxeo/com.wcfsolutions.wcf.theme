@@ -61,8 +61,12 @@ abstract class ThemeModuleFormElement extends AbstractFormElement {
 		$themeModulePosition = '';
 		if (isset($_POST['themeModulePosition'])) $themeModulePosition = $_POST['themeModulePosition'];
 		
+		// get submitting additional data
+		$encryptedAdditionalData = '';
+		if (isset($_POST['additionalData'])) $encryptedAdditionalData = $_POST['additionalData'];
+		
 		// submit
-		if ($themeModuleID == $this->themeModule->themeModuleID && $themeModulePosition == $this->themeModulePosition) {
+		if ($themeModuleID == $this->themeModule->themeModuleID && $themeModulePosition == $this->themeModulePosition && $encryptedAdditionalData == sha1(serialize($this->additionalData))) {
 			parent::submit();
 		}
 	}
@@ -73,11 +77,17 @@ abstract class ThemeModuleFormElement extends AbstractFormElement {
 	public function assignVariables() {
 		parent::assignVariables();
 		
+		// get theme module input tags
+		$html = '<input type="hidden" name="themeModuleID" value="'.$this->themeModule->themeModuleID.'" />
+			<input type="hidden" name="themeModulePosition" value="'.$this->themeModulePosition.'" />
+			<input type="hidden" name="additionalData" value="'.sha1(serialize($this->additionalData)).'" />';
+		
 		// assign parameters
 		WCF::getTPL()->assign(array(
 			'themeModule' => $this->themeModule,
 			'themeModulePosition' => $this->themeModulePosition,
-			'additionalData' => $this->additionalData
+			'additionalData' => $this->additionalData,
+			'themeModuleInputTags' => $html
 		));
 	}
 }
