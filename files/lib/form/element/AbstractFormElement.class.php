@@ -43,6 +43,39 @@ abstract class AbstractFormElement extends AbstractForm implements PageElement {
 	}
 	
 	/**
+	 * @see Form::submit()
+	 */
+	public function submit() {
+		// get identifier
+		$identifier = '';
+		if (isset($_POST['identifier'])) $identifier = $_POST['identifier'];
+		
+		// submit
+		if ($identifier == $this->getIdentifier()) {
+			parent::submit();
+		}
+	}
+	
+	/**
+	 * @see	Page::assignVariables()
+	 */
+	public function assignVariables() {
+		parent::assignVariables();
+		
+		// assign parameters
+		WCF::getTPL()->assign(array(
+			'formElementInputTag' => '<input type="hidden" name="identifier" value="'.$this->getIdentifier().'" />'
+		));
+	}
+	
+	/**
+	 * Returns the identifier of this form element.
+	 * 
+	 * @return	string
+	 */
+	public abstract function getIdentifier();
+	
+	/**
 	 * @see	PageElement::getContent()
 	 */
 	public function getContent() {
