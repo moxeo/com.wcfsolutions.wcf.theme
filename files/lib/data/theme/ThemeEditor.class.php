@@ -137,7 +137,7 @@ class ThemeEditor extends Theme {
 		@chmod($dataTarName, 0777);
 		
 		// append files to tar
-		$path = WCF_DIR.'style/theme/'.$this->dataLocation.'/';
+		$path = WCF_DIR.'theme/'.$this->dataLocation.'/';
 		if (file_exists($path) && is_dir($path)) {
 			$handle = opendir($path);
 			
@@ -320,9 +320,9 @@ class ThemeEditor extends Theme {
 			while (true);
 			
 			// create data folder if necessary
-			if (!file_exists(WCF_DIR.'style/theme/'.$dataLocation.'/')) {
-				@mkdir(WCF_DIR.'style/theme/'.$dataLocation.'/', 0777);
-				@chmod(WCF_DIR.'style/theme/'.$dataLocation.'/', 0777);
+			if (!file_exists(WCF_DIR.'theme/'.$dataLocation.'/')) {
+				@mkdir(WCF_DIR.'theme/'.$dataLocation.'/', 0777);
+				@chmod(WCF_DIR.'theme/'.$dataLocation.'/', 0777);
 			}
 			
 			$i = $tar->getIndexByFilename($data['data']);
@@ -336,8 +336,8 @@ class ThemeEditor extends Theme {
 				$contentList = $dataTar->getContentList();
 				foreach ($contentList as $key => $val) {
 					if ($val['type'] == 'file' && self::isValidDataFile($val['filename'])) {
-						$dataTar->extract($key, WCF_DIR.'style/theme/'.$dataLocation.'/'.basename($val['filename']));
-						@chmod(WCF_DIR.'style/theme/'.$dataLocation.'/'.basename($val['filename']), 0666);
+						$dataTar->extract($key, WCF_DIR.'theme/'.$dataLocation.'/'.basename($val['filename']));
+						@chmod(WCF_DIR.'theme/'.$dataLocation.'/'.basename($val['filename']), 0666);
 					}
 				}
 				
