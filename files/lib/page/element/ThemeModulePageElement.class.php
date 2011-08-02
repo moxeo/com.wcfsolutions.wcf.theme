@@ -50,6 +50,13 @@ abstract class ThemeModulePageElement extends AbstractPageElement {
 	}
 	
 	/**
+	 * @see	PageElement::getIdentifier()
+	 */	
+	public function getIdentifier() {
+		return $this->themeModule->themeModuleID.'-'.$this->themeModulePosition.'-'.sha1(serialize($this->additionalData));
+	}
+	
+	/**
 	 * @see	Page::assignVariables()
 	 */
 	public function assignVariables() {

@@ -3,8 +3,8 @@
 	<packageinformation>
 		<packagename>Theme System</packagename>
 		<isunique>1</isunique>
-		<version>1.0.0 Alpha 8</version>
-		<date>2011-07-14</date>
+		<version>1.0.0 Alpha 9</version>
+		<date>2011-08-02</date>
 	</packageinformation>
 	
 	<authorinformation>
@@ -25,6 +25,25 @@
 		<templates>templates.tar</templates>
 		<acptemplates>acptemplates.tar</acptemplates>
 		<sql>install.sql</sql>
+		
+		<!-- config -->
+		<groupoptions>groupoptions.xml</groupoptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<thememoduletype>thememoduletype.xml</thememoduletype>
+		
+		<!-- languages -->
+		<languages languagecode="de">de.xml</languages>
+		<!--<languages languagecode="en">en.xml</languages>-->
+	</instructions>
+	
+	<instructions type="update" fromversion="1.0.0 Alpha 8">
+		<!-- pips -->
+		<packageinstallationplugins>pip.tar</packageinstallationplugins>
+		
+		<!-- files -->
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
 		
 		<!-- config -->
 		<groupoptions>groupoptions.xml</groupoptions>

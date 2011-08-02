@@ -50,7 +50,7 @@ abstract class ThemeModuleFormElement extends AbstractFormElement {
 	}
 
 	/**
-	 * @see	AbstractFormElement::getIdentifier()
+	 * @see	PageElement::getIdentifier()
 	 */	
 	public function getIdentifier() {
 		return $this->themeModule->themeModuleID.'-'.$this->themeModulePosition.'-'.sha1(serialize($this->additionalData));

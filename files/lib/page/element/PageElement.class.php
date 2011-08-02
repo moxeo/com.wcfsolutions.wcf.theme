@@ -11,6 +11,13 @@
  */
 interface PageElement {
 	/**
+	 * Returns the identifier of this page element.
+	 * 
+	 * @return	string
+	 */
+	public function getIdentifier();
+	
+	/**
 	 * Returns the content (html code).
 	 * 
 	 * @return	string

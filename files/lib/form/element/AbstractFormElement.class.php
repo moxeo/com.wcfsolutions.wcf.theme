@@ -64,16 +64,10 @@ abstract class AbstractFormElement extends AbstractForm implements PageElement {
 		
 		// assign parameters
 		WCF::getTPL()->assign(array(
+			'identifier' => $this->getIdentifier(),
 			'formElementInputTag' => '<input type="hidden" name="identifier" value="'.$this->getIdentifier().'" />'
 		));
 	}
-	
-	/**
-	 * Returns the identifier of this form element.
-	 * 
-	 * @return	string
-	 */
-	public abstract function getIdentifier();
 	
 	/**
 	 * @see	PageElement::getContent()

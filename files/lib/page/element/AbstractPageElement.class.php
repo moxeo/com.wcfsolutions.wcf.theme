@@ -43,6 +43,18 @@ abstract class AbstractPageElement extends MultipleLinkPage implements PageEleme
 	}
 	
 	/**
+	 * @see	Page::assignVariables()
+	 */
+	public function assignVariables() {
+		parent::assignVariables();
+		
+		// assign parameters
+		WCF::getTPL()->assign(array(
+			'identifier' => $this->getIdentifier()
+		));
+	}
+	
+	/**
 	 * @see	PageElement::getContent()
 	 */
 	public function getContent() {
