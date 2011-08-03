@@ -62,6 +62,12 @@
 			inlineHelp.register('themeLayout');
 		//]]></script>
 	</fieldset>
+{else}
+	<div class="border content">
+		<div class="container-1">
+			<p>{lang}wcf.acp.theme.layout.moduleAssignment.count.noThemeLayouts{/lang}</p>
+		</div>
+	</div>
 {/if}
 
 {if $themeLayoutID}		

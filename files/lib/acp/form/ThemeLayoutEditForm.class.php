@@ -33,6 +33,9 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 		// get theme layout
 		if (isset($_REQUEST['themeLayoutID'])) $this->themeLayoutID = intval($_REQUEST['themeLayoutID']);
 		$this->themeLayout = new ThemeLayoutEditor($this->themeLayoutID);
+		
+		// get theme
+		$this->theme = new Theme($this->themeLayout->themeID);
 	}
 	
 	/**

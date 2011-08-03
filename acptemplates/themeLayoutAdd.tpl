@@ -20,7 +20,7 @@
 <div class="contentHeader">
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?page=ThemeLayoutList{if $themeID}&amp;themeID={@$themeID}{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.menu.link.theme.layout.view{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/themeLayoutM.png" alt="" /> <span>{lang}wcf.acp.menu.link.theme.layout.view{/lang}</span></a></li>
+			<li><a href="index.php?page=ThemeLayoutList{if $theme}&amp;themeID={@$theme->themeID}{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.menu.link.theme.layout.view{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/themeLayoutM.png" alt="" /> <span>{lang}wcf.acp.menu.link.theme.layout.view{/lang}</span></a></li>
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
 		</ul>
 	</div>

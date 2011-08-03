@@ -37,6 +37,9 @@ class ThemeModuleEditForm extends ThemeModuleAddForm {
 			throw new IllegalLinkException();
 		}
 		
+		// get theme
+		$this->theme = new Theme($this->themeModule->themeID);
+		
 		// get available theme module types
 		$this->availableThemeModuleTypes = ThemeModule::getAvailableThemeModuleTypes();
 	}

@@ -83,6 +83,7 @@
 		<item name="wcf.acp.theme.layout.edit"><![CDATA[Layout bearbeiten]]></item>
 		<item name="wcf.acp.theme.layout.edit.success"><![CDATA[Das Layout wurde erfolgreich bearbeitet.]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment"><![CDATA[Modulzuordnung]]></item>
+		<item name="wcf.acp.theme.layout.moduleAssignment.count.noThemeLayouts"><![CDATA[Derzeit sind keine Layouts vorhanden, denen Module zugeordnet werden könnten.]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment.module"><![CDATA[Modul]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment.module.add"><![CDATA[Modul hinzufügen]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment.module.button.add"><![CDATA[Hinzufügen]]></item>
