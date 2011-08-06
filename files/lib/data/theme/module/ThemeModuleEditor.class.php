@@ -6,7 +6,7 @@ require_once(WCF_DIR.'lib/data/theme/module/ThemeModule.class.php');
  * Provides functions to manage theme modules.
  * 
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/index.html>
+ * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	data.theme.module

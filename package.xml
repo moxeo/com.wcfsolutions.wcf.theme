@@ -3,8 +3,8 @@
 	<packageinformation>
 		<packagename>Theme System</packagename>
 		<isunique>1</isunique>
-		<version>1.0.0 Alpha 9</version>
-		<date>2011-08-02</date>
+		<version>1.0.0 Alpha 10</version>
+		<date>2011-08-06</date>
 	</packageinformation>
 	
 	<authorinformation>
@@ -36,7 +36,7 @@
 		<!--<languages languagecode="en">en.xml</languages>-->
 	</instructions>
 	
-	<instructions type="update" fromversion="1.0.0 Alpha 8">
+	<instructions type="update" fromversion="1.0.0 Alpha 9">
 		<!-- pips -->
 		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 		
