@@ -3,7 +3,7 @@
 
 /*
 
-File: global.css 
+File: global.css
 Copyright 2009-2011 by wcfsolutions.com
 
 */
@@ -33,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
 	text-align: left;
 	padding: 0;
-	margin: 1px 0 12px 0;
+	margin: 12px 0 1px 0;
 }
 
 select, textarea {
@@ -95,7 +95,7 @@ a:hover {
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
 	min-height: 80px;
-	opacity: .5;	
+	opacity: .5;
 }
 
 /* ### -- -- -- -- -- EOF -- -- -- -- -- ### */
