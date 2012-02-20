@@ -4,9 +4,9 @@ require_once(WCF_DIR.'lib/data/theme/Theme.class.php');
 
 /**
  * Provides functions to manage themes.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	data.theme
@@ -14,7 +14,7 @@ require_once(WCF_DIR.'lib/data/theme/Theme.class.php');
  */
 class ThemeEditor extends Theme {
 	const INFO_FILE = 'theme.xml';
-	
+
 	/**
 	 * Creates a new ThemeEditor object.
 	 */
@@ -28,10 +28,10 @@ class ThemeEditor extends Theme {
 			parent::__construct(null, $row);
 		}
 	}
-	
+
 	/**
 	 * Updates this theme.
-	 * 
+	 *
 	 * @param	string		$themeName
 	 * @param	integer		$templatePackID
 	 * @param	string		$themeDescription
@@ -58,10 +58,10 @@ class ThemeEditor extends Theme {
 			WHERE	themeID = ".$this->themeID;
 		WCF::getDB()->sendQuery($sql);
 	}
-	
+
 	/**
 	 * Exports this theme.
-	 * 
+	 *
 	 * @param	boolean		$exportTemplates
 	 */
 	public function export($exportTemplates = false) {
@@ -69,10 +69,10 @@ class ThemeEditor extends Theme {
 		require_once(WCF_DIR.'lib/system/io/TarWriter.class.php');
 		$themeTarName = FileUtil::getTemporaryFilename('theme_', '.tgz');
 		$themeTar = new TarWriter($themeTarName, true);
-		
+
 		// create theme info file
 		$string = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<theme xmlns=\"http://www.wcfsolutions.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.wcfsolutions.com http://www.wcfsolutions.com/XSD/theme.xsd\">\n";
-		
+
 		// general block
 		$string .= "\t<general>\n";
 		$string .= "\t\t<themename><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $this->themeName) : $this->themeName))."]]></themename>\n"; // theme name
@@ -82,33 +82,33 @@ class ThemeEditor extends Theme {
 		if ($this->copyright) $string .= "\t\t<copyright><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $this->copyright) : $this->copyright))."]]></copyright>\n"; // copyright
 		if ($this->license) $string .= "\t\t<license><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $this->license) : $this->license))."]]></license>\n"; // license
 		$string .= "\t</general>\n";
-		
+
 		// author block
 		$string .= "\t<author>\n";
 		if ($this->authorName) $string .= "\t\t<authorname><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $this->authorName) : $this->authorName))."]]></authorname>\n"; // author name
 		if ($this->authorURL) $string .= "\t\t<authorurl><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $this->authorURL) : $this->authorURL))."]]></authorurl>\n"; // author URL
 		$string .= "\t</author>\n";
-		
+
 		// files block
 		$string .= "\t<files>\n";
 		if ($exportTemplates && $this->templatePackID) $string .= "\t\t<templates>templates.tar</templates>\n"; // templates
 		$string .= "\t\t<data>data.tar</data>\n"; // data
 		$string .= "\t</files>\n";
-		
+
 		$string .= "</theme>";
 		// append theme info file to theme tar
 		$themeTar->addString(self::INFO_FILE, $string);
 		unset($string);
-		
+
 		if ($exportTemplates && $this->templatePackID) {
 			require_once(WCF_DIR.'lib/data/template/TemplatePack.class.php');
 			$templatePack = new TemplatePack($this->templatePackID);
-			
+
 			// create templates tar
 			$templatesTarName = FileUtil::getTemporaryFilename('templates', '.tar');
 			$templatesTar = new TarWriter($templatesTarName);
 			@chmod($templatesTarName, 0777);
-			
+
 			// append templates to tar
 			// get templates
 			$sql = "SELECT		template.*, package.package, package.packageDir,
@@ -124,41 +124,41 @@ class ThemeEditor extends Theme {
 				$filename = FileUtil::addTrailingSlash(FileUtil::getRealPath(WCF_DIR.$row['packageDir'].'templates/'.$templatePack->templatePackFolderName)).$row['templateName'].'.tpl';
 				$templatesTar->add($filename, $row['package'], dirname($filename));
 			}
-			
+
 			// append templates tar to theme tar
 			$templatesTar->create();
 			$themeTar->add($templatesTarName, 'templates.tar', $templatesTarName);
 			@unlink($templatesTarName);
 		}
-		
+
 		// create data tar
 		$dataTarName = FileUtil::getTemporaryFilename('data_', '.tar');
 		$dataTar = new TarWriter($dataTarName);
 		@chmod($dataTarName, 0777);
-		
+
 		// append files to tar
 		$path = WCF_DIR.'theme/'.$this->dataLocation.'/';
 		if (file_exists($path) && is_dir($path)) {
 			$handle = opendir($path);
-			
+
 			while (($file = readdir($handle)) !== false) {
 				if (is_file($path.$file) && self::isValidDataFile($file)) {
 					$dataTar->add($path.$file, '', $path);
 				}
 			}
 		}
-		
+
 		// append data tar to theme tar
 		$dataTar->create();
 		$themeTar->add($dataTarName, 'data.tar', $dataTarName);
 		@unlink($dataTarName);
-		
+
 		// output file content
 		$themeTar->create();
 		readfile($themeTarName);
-		@unlink($themeTarName);	
+		@unlink($themeTarName);
 	}
-	
+
 	/**
 	 * Deletes this theme.
 	 */
@@ -178,7 +178,7 @@ class ThemeEditor extends Theme {
 			require_once(WCF_DIR.'lib/data/theme/module/ThemeModuleEditor.class.php');
 			ThemeModuleEditor::deleteAll($themeModuleIDs);
 		}
-		
+
 		// get all theme layout ids
 		$themeLayoutIDs = '';
 		$sql = "SELECT	themeLayoutID
@@ -194,16 +194,16 @@ class ThemeEditor extends Theme {
 			require_once(WCF_DIR.'lib/data/theme/layout/ThemeLayoutEditor.class.php');
 			ThemeLayoutEditor::deleteAll($themeLayoutIDs);
 		}
-		
+
 		// delete theme
 		$sql = "DELETE FROM	wcf".WCF_N."_theme
 			WHERE		themeID = ".$this->themeID;
 		WCF::getDB()->sendQuery($sql);
 	}
-	
+
 	/**
 	 * Creates a new theme.
-	 * 
+	 *
 	 * @param	string		$themeName
 	 * @param	integer		$templatePackID
 	 * @param	string		$themeDescription
@@ -222,14 +222,14 @@ class ThemeEditor extends Theme {
 					(packageID, themeName, templatePackID, themeDescription, themeVersion, themeDate, dataLocation, copyright, license, authorName, authorURL)
 			VALUES		(".$packageID.", '".escapeString($themeName)."', ".$templatePackID.", '".escapeString($themeDescription)."', '".escapeString($themeVersion)."', '".escapeString($themeDate)."', '".escapeString($dataLocation)."', '".escapeString($copyright)."', '".escapeString($license)."', '".escapeString($authorName)."', '".escapeString($authorURL)."')";
 		WCF::getDB()->sendQuery($sql);
-		
+
 		$themeID = WCF::getDB()->getInsertID("wcf".WCF_N."_theme", 'themeID');
 		return new ThemeEditor($themeID, null, null, false);
 	}
-	
+
 	/**
 	 * Imports a theme.
-	 * 
+	 *
 	 * @param	string		$filename
 	 * @param	integer		$packageID
 	 */
@@ -237,22 +237,22 @@ class ThemeEditor extends Theme {
 		// open file
 		require_once(WCF_DIR.'lib/system/io/Tar.class.php');
 		$tar = new Tar($filename);
-		
+
 		// get theme data
 		$data = self::readThemeData($tar);
-		
+
 		// get data location
 		$dataLocation = self::getFilename($data['name']);
 		if (empty($dataLocation)) $dataLocation = 'generic'.StringUtil::substring(StringUtil::getRandomID(), 0, 8);
 		$originalDataLocation = $dataLocation;
-		
+
 		// create template pack
 		$templatePackID = 0;
 		if (!empty($data['templates'])) {
 			// create template pack
 			$originalTemplatePackName = $templatePackName = $data['name'];
 			$originalTemplatePackFolderName = $templatePackFolderName = $dataLocation;
-			
+
 			// get unique template pack name
 			$i = 1;
 			do {
@@ -265,7 +265,7 @@ class ThemeEditor extends Theme {
 				$i++;
 			}
 			while (true);
-			
+
 			// get unique folder name
 			$i = 1;
 			do {
@@ -279,12 +279,12 @@ class ThemeEditor extends Theme {
 				$i++;
 			}
 			while (true);
-			
+
 			// save template pack
 			require_once(WCF_DIR.'lib/data/template/TemplatePackEditor.class.php');
 			$templatePackID = TemplatePackEditor::create($templatePackName, FileUtil::addTrailingSlash($templatePackFolderName));
 		}
-		
+
 		// data
 		if (!empty($data['data'])) {
 			// get unique data location name
@@ -300,10 +300,10 @@ class ThemeEditor extends Theme {
 			}
 			while (true);
 		}
-		
+
 		// save theme
 		$theme = self::create($data['name'], $templatePackID, $data['description'], $data['version'], $data['date'], $dataLocation, $data['copyright'], $data['license'], $data['authorName'], $data['authorURL'], $packageID);
-		
+
 		// import data
 		if (!empty($data['data'])) {
 			// get unique data location name
@@ -318,19 +318,19 @@ class ThemeEditor extends Theme {
 				$i++;
 			}
 			while (true);
-			
+
 			// create data folder if necessary
 			if (!file_exists(WCF_DIR.'theme/'.$dataLocation.'/')) {
 				@mkdir(WCF_DIR.'theme/'.$dataLocation.'/', 0777);
 				@chmod(WCF_DIR.'theme/'.$dataLocation.'/', 0777);
 			}
-			
+
 			$i = $tar->getIndexByFilename($data['data']);
 			if ($i !== false) {
 				// extract data tar
 				$destination = FileUtil::getTemporaryFilename('data_');
 				$tar->extract($i, $destination);
-				
+
 				// open data tar
 				$dataTar = new Tar($destination);
 				$contentList = $dataTar->getContentList();
@@ -340,13 +340,13 @@ class ThemeEditor extends Theme {
 						@chmod(WCF_DIR.'theme/'.$dataLocation.'/'.basename($val['filename']), 0666);
 					}
 				}
-				
+
 				// delete tmp file
 				$dataTar->close();
 				@unlink($destination);
 			}
 		}
-		
+
 		// import templates
 		if (!empty($data['templates'])) {
 			$i = $tar->getIndexByFilename($data['templates']);
@@ -354,7 +354,7 @@ class ThemeEditor extends Theme {
 				// extract templates tar
 				$destination = FileUtil::getTemporaryFilename('templates_');
 				$tar->extract($i, $destination);
-				
+
 				// open templates tar and group templates by package
 				$templatesTar = new Tar($destination);
 				$contentList = $templatesTar->getContentList();
@@ -369,7 +369,7 @@ class ThemeEditor extends Theme {
 						$packageToTemplates[$packageName][] = array('index' => $val['index'], 'filename' => implode('/', $folders));
 					}
 				}
-				
+
 				// copy templates
 				foreach ($packageToTemplates as $package => $templates) {
 					// try to find package
@@ -380,17 +380,17 @@ class ThemeEditor extends Theme {
 					while ($row = WCF::getDB()->fetchArray($result)) {
 						// get icon path
 						$templatesDir = FileUtil::addTrailingSlash(FileUtil::getRealPath(WCF_DIR.$row['packageDir']).'templates/'.$templatePackFolderName);
-						
+
 						// create template path
 						if (!file_exists($templatesDir)) {
 							@mkdir($templatesDir, 0777);
 							@chmod($templatesDir, 0777);
 						}
-						
+
 						// copy templates
 						foreach ($templates as $template) {
 							$templatesTar->extract($template['index'], $templatesDir.$template['filename']);
-							
+
 							$sql = "INSERT INTO	wcf".WCF_N."_template
 										(packageID, templateName, templatePackID)
 								VALUES		(".$row['packageID'].", '".escapeString(str_replace('.tpl', '', $template['filename']))."', ".$templatePackID.")";
@@ -398,7 +398,7 @@ class ThemeEditor extends Theme {
 						}
 					}
 				}
-				
+
 				// delete tmp file
 				$templatesTar->close();
 				@unlink($destination);
@@ -406,13 +406,13 @@ class ThemeEditor extends Theme {
 		}
 
 		$tar->close();
-		
-		return $theme;		
+
+		return $theme;
 	}
-	
+
 	/**
 	 * Reads the data of a theme exchange format file.
-	 * 
+	 *
 	 * @param	Tar		$tar
 	 * @return	array
 	 */
@@ -422,7 +422,7 @@ class ThemeEditor extends Theme {
 		if ($i === false) {
 			throw new SystemException("unable to find required file '".self::INFO_FILE."' in theme archive", 100001);
 		}
-		
+
 		// open theme.xml
 		$themeXML = new XML();
 		$themeXML->loadString($tar->extractToString($i));
@@ -430,12 +430,12 @@ class ThemeEditor extends Theme {
 		$data = array(
 			'name' => '', 'description' => '', 'version' => '', 'date' => '0000-00-00', 'copyright' => '',
 			'license' => '', 'authorName' => '', 'authorURL' => '', 'templates' => '', 'data' => ''
-			
+
 		);
-		
+
 		foreach ($xmlContent['children'] as $child) {
 			switch ($child['name']) {
-				case 'general': 
+				case 'general':
 					foreach ($child['children'] as $general) {
 						switch ($general['name']) {
 							case 'themename':
@@ -443,7 +443,7 @@ class ThemeEditor extends Theme {
 								break;
 							case 'description':
 							case 'version':
-							case 'date': 
+							case 'date':
 							case 'copyright':
 							case 'license':
 								$data[$general['name']] = StringUtil::convertEncoding('UTF-8', CHARSET, $general['cdata']);
@@ -451,7 +451,7 @@ class ThemeEditor extends Theme {
 						}
 					}
 					break;
-				
+
 				case 'author':
 					foreach ($child['children'] as $author) {
 						switch ($author['name']) {
@@ -464,7 +464,7 @@ class ThemeEditor extends Theme {
 						}
 					}
 					break;
-				
+
 				case 'files':
 					foreach ($child['children'] as $files) {
 						switch ($files['name']) {
@@ -477,17 +477,17 @@ class ThemeEditor extends Theme {
 					break;
 			}
 		}
-		
+
 		if (empty($data['name'])) {
 			throw new SystemException("required tag 'themename' is missing in '".self::INFO_FILE."'", 100002);
 		}
-		
+
 		return $data;
 	}
-	
+
 	/**
 	 * Returns the data of a theme exchange format file.
-	 * 
+	 *
 	 * @param	string		$filename
 	 * @return	array
 	 */
@@ -495,39 +495,39 @@ class ThemeEditor extends Theme {
 		// open file
 		require_once(WCF_DIR.'lib/system/io/Tar.class.php');
 		$tar = new Tar($filename);
-		
+
 		// get theme data
 		$data = self::readThemeData($tar);
 		$tar->close();
-		
+
 		return $data;
 	}
-	
+
 	/**
 	 * Returns true, if the given filename is a valid data file.
-	 * 
+	 *
 	 * @param	string		$filename
 	 * @return	boolean
 	 */
 	public static function isValidDataFile($filename) {
 		$illegalFileExtensions = array('php', 'php3', 'php4', 'php5', 'phtml');
-		
+
 		// get file extension
 		$fileExtension = '';
 		if (!empty($filename) && StringUtil::indexOf($filename, '.') !== false) {
 			$fileExtension = StringUtil::toLowerCase(StringUtil::substring($filename, StringUtil::lastIndexOf($filename, '.') + 1));
 		}
-		
+
 		// check file extension
 		if (in_array($fileExtension, $illegalFileExtensions)) {
 			return false;
 		}
-		return true;		
+		return true;
 	}
-	
+
 	/**
 	 * Returns the filename of the given string.
-	 * 
+	 *
 	 * @return	string
 	 */
 	public static function getFilename($string) {

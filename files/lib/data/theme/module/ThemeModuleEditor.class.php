@@ -4,9 +4,9 @@ require_once(WCF_DIR.'lib/data/theme/module/ThemeModule.class.php');
 
 /**
  * Provides functions to manage theme modules.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	data.theme.module
@@ -15,7 +15,7 @@ require_once(WCF_DIR.'lib/data/theme/module/ThemeModule.class.php');
 class ThemeModuleEditor extends ThemeModule {
 	/**
 	 * Creates a new ThemeModuleEditor object.
-	 * 
+	 *
 	 * @param	integer		$themeModuleID
 	 * @param 	array<mixed>	$row
 	 * @param	ThemeModule	$cacheObject
@@ -31,10 +31,10 @@ class ThemeModuleEditor extends ThemeModule {
 			parent::__construct(null, $row);
 		}
 	}
-	
+
 	/**
 	 * Updates this theme module.
-	 * 
+	 *
 	 * @param	string		$title
 	 * @param	string		$cssID
 	 * @param	string		$cssClasses
@@ -51,17 +51,17 @@ class ThemeModuleEditor extends ThemeModule {
 			WHERE	themeModuleID = ".$this->themeModuleID;
 		WCF::getDB()->sendQuery($sql);
 	}
-	
+
 	/**
 	 * Deletes this theme module.
 	 */
 	public function delete() {
 		self::deleteAll($this->themeModuleID);
 	}
-	
+
 	/**
 	 * Creates a new theme module.
-	 * 
+	 *
 	 * @param	string			$title
 	 * @param	string			$cssID
  	 * @param	string			$cssClasses
@@ -75,30 +75,30 @@ class ThemeModuleEditor extends ThemeModule {
 					(packageID, themeID, title, cssID, cssClasses, themeModuleType, themeModuleData)
 			VALUES		(".$packageID.", ".$themeID.", '".escapeString($title)."', '".escapeString($cssID)."', '".escapeString($cssClasses)."', '".escapeString($themeModuleType)."', '".escapeString(serialize($themeModuleData))."')";
 		WCF::getDB()->sendQuery($sql);
-		
+
 		$themeModuleID = WCF::getDB()->getInsertID("wcf".WCF_N."_theme_module", 'themeModuleID');
 		return new ThemeModuleEditor($themeModuleID, null, null, false);
 	}
-	
+
 	/**
 	 * Deletes all theme modules with the given theme module ids.
-	 * 
+	 *
 	 * @param	string		$themeModuleIDs
 	 */
 	public static function deleteAll($themeModuleIDs) {
 		if (empty($themeModuleIDs)) return;
-		
+
 		// delete theme module assignments
 		$sql = "DELETE FROM	wcf".WCF_N."_theme_module_to_layout
 			WHERE		themeModuleID IN (".$themeModuleIDs.")";
 		WCF::getDB()->sendQuery($sql);
-		
+
 		// delete theme module
 		$sql = "DELETE FROM	wcf".WCF_N."_theme_module
 			WHERE		themeModuleID IN (".$themeModuleIDs.")";
 		WCF::getDB()->sendQuery($sql);
 	}
-	
+
 	/**
 	 * Clears the theme module cache.
 	 */

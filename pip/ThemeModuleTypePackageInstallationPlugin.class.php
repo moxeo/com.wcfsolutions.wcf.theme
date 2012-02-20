@@ -4,9 +4,9 @@ require_once(WCF_DIR.'lib/acp/package/plugin/AbstractXMLPackageInstallationPlugi
 
 /**
  * This PIP installs, updates or deletes theme module types.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	acp.package.plugin
@@ -16,20 +16,20 @@ require_once(WCF_DIR.'lib/acp/package/plugin/AbstractXMLPackageInstallationPlugi
 class ThemeModuleTypePackageInstallationPlugin extends AbstractXMLPackageInstallationPlugin {
 	public $tagName = 'thememoduletype';
 	public $tableName = 'theme_module_type';
-	
-	/** 
+
+	/**
 	 * @see	PackageInstallationPlugin::install()
 	 */
 	public function install() {
 		parent::install();
-		
+
 		if (!$xml = $this->getXML()) {
 			return;
 		}
-		
+
 		// Create an array with the data blocks (import or delete) from the xml file.
 		$themeModuleTypeXML = $xml->getElementTree('data');
-		
+
 		// Loop through the array and install or uninstall items.
 		foreach ($themeModuleTypeXML['children'] as $key => $block) {
 			if (count($block['children'])) {
@@ -42,15 +42,15 @@ class ThemeModuleTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 							if (!isset($child['cdata'])) continue;
 							$themeModuleType[$child['name']] = $child['cdata'];
 						}
-					
+
 						// default values
 						$name = $category = $classFile = '';
-						
+
 						// get values
 						if (isset($themeModuleType['name'])) $name = $themeModuleType['name'];
 						if (isset($themeModuleType['category'])) $category = $themeModuleType['category'];
 						if (isset($themeModuleType['classfile'])) $classFile = $themeModuleType['classfile'];
-						
+
 						// insert items
 						$sql = "INSERT INTO			wcf".WCF_N."_theme_module_type
 											(packageID, themeModuleType, category, classFile)
@@ -73,9 +73,9 @@ class ThemeModuleTypePackageInstallationPlugin extends AbstractXMLPackageInstall
 							if (!isset($child['cdata'])) continue;
 							$themeModuleType[$child['name']] = $child['cdata'];
 						}
-					
+
 						if (empty($themeModuleType['name'])) {
-							throw new SystemException("Required 'name' attribute for theme module type is missing", 13023); 
+							throw new SystemException("Required 'name' attribute for theme module type is missing", 13023);
 						}
 						$nameArray[] = $themeModuleType['name'];
 					}

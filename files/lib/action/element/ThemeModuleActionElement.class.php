@@ -5,9 +5,9 @@ require_once(WCF_DIR.'lib/action/AbstractSecureAction.class.php');
 
 /**
  * Provides default implementations for theme module action elements.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	action.element
@@ -16,14 +16,14 @@ require_once(WCF_DIR.'lib/action/AbstractSecureAction.class.php');
 abstract class ThemeModuleActionElement extends AbstractSecureAction {
 	/**
 	 * theme module object
-	 * 
+	 *
 	 * @var	ThemeModule
 	 */
-	public $themeModule = null;	
-	
+	public $themeModule = null;
+
 	/**
 	 * Creates a new ThemeModuleActionElement object.
-	 * 
+	 *
 	 * @param	ThemeModule		$themeModule
 	 * @param	string			$themeModulePosition
 	 * @param	array			$additionalData

@@ -1,7 +1,7 @@
-WCF Solutions Infinite Site (Theme System)
-==========================================
+Moxeo Open Source CMS (Theme System)
+====================================
 
-Repository of the WCF Solutions CMS project (Theme System).
+Repository of the Moxeo Open Source CMS project (Theme System).
 
 License
 -------

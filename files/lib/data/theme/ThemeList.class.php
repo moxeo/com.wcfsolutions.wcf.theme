@@ -5,9 +5,9 @@ require_once(WCF_DIR.'lib/data/theme/Theme.class.php');
 
 /**
  * Represents a list of themes.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	data.theme
@@ -16,11 +16,11 @@ require_once(WCF_DIR.'lib/data/theme/Theme.class.php');
 class ThemeList extends DatabaseObjectList {
 	/**
 	 * list of themes
-	 * 
+	 *
 	 * @var array<Theme>
 	 */
 	public $themes = array();
-	
+
 	/**
 	 * @see	DatabaseObjectList::countObjects()
 	 */
@@ -31,7 +31,7 @@ class ThemeList extends DatabaseObjectList {
 		$row = WCF::getDB()->getFirstRow($sql);
 		return $row['count'];
 	}
-	
+
 	/**
 	 * @see	DatabaseObjectList::readObjects()
 	 */
@@ -48,7 +48,7 @@ class ThemeList extends DatabaseObjectList {
 			$this->themes[] = new Theme(null, $row);
 		}
 	}
-	
+
 	/**
 	 * @see	DatabaseObjectList::getObjects()
 	 */

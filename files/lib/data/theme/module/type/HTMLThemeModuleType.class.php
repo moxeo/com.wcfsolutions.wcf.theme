@@ -4,9 +4,9 @@ require_once(WCF_DIR.'lib/data/theme/module/type/AbstractThemeModuleType.class.p
 
 /**
  * Represents a html theme module type.
- * 
+ *
  * @author	Sebastian Oettl
- * @copyright	2009-2011 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	data.theme.module.type
@@ -23,7 +23,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 		}
 		return $themeModule->code;
 	}
-	
+
 	/**
 	 * @see	ThemeModuleType::getSearchableContent()
 	 */
@@ -31,14 +31,14 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 		$code = $this->getContent($themeModule, $themeModulePosition, $additionalData);
 		return StringUtil::stripHTML($code);
 	}
-	
+
 	/**
 	 * @see	ThemeModuleType::getPreviewHTML()
 	 */
 	public function getPreviewHTML(ThemeModule $themeModule) {
 		return $themeModule->code;
 	}
-	
+
 	// form methods
 	/**
 	 * @see	ThemeModuleType::readFormParameters()
@@ -47,7 +47,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 		$this->formData['code'] = '';
 		if (isset($_POST['code'])) $this->formData['code'] = StringUtil::trim($_POST['code']);
 	}
-	
+
 	/**
 	 * @see	ThemeModuleType::validate()
 	 */
@@ -56,7 +56,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 		if (empty($this->formData['code'])) {
 			throw new UserInputException('code');
 		}
-		
+
 		// compile dynamic code
 		$this->formData['dynamicCode'] = '';
 		if (strpos($this->formData['code'], '{') !== false) {
@@ -70,7 +70,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 			}
 		}
 	}
-	
+
 	/**
 	 * @see	ThemeModuleType::assignVariables()
 	 */
@@ -79,7 +79,7 @@ class HTMLThemeModuleType extends AbstractThemeModuleType {
 			'code' => (isset($this->formData['code']) ? $this->formData['code'] : '')
 		));
 	}
-	
+
 	/**
 	 * @see	ThemeModuleType::getFormTemplateName()
 	 */
