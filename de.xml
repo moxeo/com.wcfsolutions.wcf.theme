@@ -37,6 +37,14 @@
 		<item name="wcf.acp.menu.link.theme.module.view"><![CDATA[Module auflisten]]></item>
 		<item name="wcf.acp.menu.link.theme.view"><![CDATA[Themes auflisten]]></item>
 	</category>
+	<category name="wcf.acp.package">
+		<item name="wcf.acp.package.step.install.ThemeModuleTypePackageInstallationPlugin"><![CDATA[Theme-Modul-Typen werden installiert ...]]></item>
+		<item name="wcf.acp.package.step.install.ThemePackageInstallationPlugin"><![CDATA[Themes werden installiert ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.ThemeModuleTypePackageInstallationPlugin"><![CDATA[Theme-Modul-Typen werden deinstalliert ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.ThemePackageInstallationPlugin"><![CDATA[Themes werden deinstalliert ...]]></item>
+		<item name="wcf.acp.package.step.update.ThemeModuleTypePackageInstallationPlugin"><![CDATA[Theme-Modul-Typen werden aktualisiert ...]]></item>
+		<item name="wcf.acp.package.step.update.ThemePackageInstallationPlugin"><![CDATA[Themes werden aktualisiert ...]]></item>
+	</category>
 	<category name="wcf.acp.theme">
 		<item name="wcf.acp.theme"><![CDATA[Theme]]></item>
 		<item name="wcf.acp.theme.add"><![CDATA[Theme hinzufügen]]></item>
