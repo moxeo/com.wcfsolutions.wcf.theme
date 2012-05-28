@@ -68,7 +68,7 @@
 		<item name="wcf.acp.theme.export"><![CDATA[Theme exportieren]]></item>
 		<item name="wcf.acp.theme.export.data"><![CDATA[Daten]]></item>
 		<item name="wcf.acp.theme.export.exportTemplates"><![CDATA[Templates exportieren]]></item>
-		<item name="wcf.acp.theme.export.exportTemplates.description"><![CDATA[Sollten Templates mit dem Theme exportiert werden?]]></item>
+		<item name="wcf.acp.theme.export.exportTemplates.description"><![CDATA[Sollen die Templates mit dem Theme exportiert werden?]]></item>
 		<item name="wcf.acp.theme.export.filename"><![CDATA[Dateiname]]></item>
 		<item name="wcf.acp.theme.export.filename.description"><![CDATA[Geben Sie hier den Dateinamen des zu exportierenden Themes an.]]></item>
 		<item name="wcf.acp.theme.export.files"><![CDATA[Dateien]]></item>
