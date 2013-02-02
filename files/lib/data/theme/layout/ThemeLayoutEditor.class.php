@@ -42,13 +42,21 @@ class ThemeLayoutEditor extends ThemeLayout {
 	 * @return	ThemeLayoutEditor
 	 */
 	public static function create($themeID, $title, $styleSheets, $packageID = PACKAGE_ID) {
+		// create theme layout
 		$sql = "INSERT INTO	wcf".WCF_N."_theme_layout
 					(packageID, themeID, title, styleSheets)
 			VALUES		(".$packageID.", ".$themeID.", '".escapeString($title)."', '".escapeString($styleSheets)."')";
 		WCF::getDB()->sendQuery($sql);
 
+		// get new theme layout
 		$themeLayoutID = WCF::getDB()->getInsertID("wcf".WCF_N."_theme_layout", 'themeLayoutID');
-		return new ThemeLayoutEditor($themeLayoutID, null, null, false);
+		$themeLayout = new ThemeLayoutEditor($themeLayoutID, null, null, false);
+
+		// compile stylesheet
+		$themeLayout->compileStylesheet();
+
+		// return theme layout
+		return $themeLayout;
 	}
 
 	/**
@@ -78,11 +86,55 @@ class ThemeLayoutEditor extends ThemeLayout {
 	 * @param	string		$styleSheets
 	 */
 	public function update($title, $styleSheets) {
+		// update theme layout
 		$sql = "UPDATE	wcf".WCF_N."_theme_layout
 			SET	title = '".escapeString($title)."',
 				styleSheets = '".escapeString($styleSheets)."'
 			WHERE	themeLayoutID = ".$this->themeLayoutID;
 		WCF::getDB()->sendQuery($sql);
+
+		$this->data['title'] = $title;
+		$this->data['styleSheets'] = $styleSheets;
+
+		// compile stylesheet
+		$this->compileStylesheet();
+	}
+
+	/**
+	 * Compiles the stylesheet of this theme layout.
+	 */
+	public function compileStylesheet() {
+		// import compiler
+		require_once(WCF_DIR.'lib/system/theme/3rdParty/lessc.inc.php');
+		$compiler = new lessc();
+		$compiler->setImportDir(array(WCF_DIR));
+
+		// get theme
+		$theme = Theme::getTheme($this->themeID);
+
+		// determine required files
+		$files = array('theme/reset.less');
+		foreach ($this->getStyleSheets() as $stylesheet) {
+			$files[] = 'theme/'.$theme->dataLocation.'/'.$stylesheet.'.less';
+		}
+
+		// get less code
+		$less = '';
+		foreach ($files as $file) {
+			$less .= '@import "'.$file.'";'."\n";
+		}
+
+		// compile code
+		$css = "/* stylesheet for the layout '".$this->title."' of the theme '".$theme->themeName."', generated on ".gmdate('r')." -- DO NOT EDIT */\n\n";
+		try {
+			$css .= $compiler->compile($less);
+		}
+		catch (Exception $e) {
+			throw new SystemException("Could not compile LESS code: ".$e->getMessage());
+		}
+
+		// write stylesheet
+		file_put_contents(WCF_DIR.'theme/'.$this->dataLocation.'/theme'.$theme->themeID.'-'.$this->themeLayoutID.'.css', $css);
 	}
 
 	/**
