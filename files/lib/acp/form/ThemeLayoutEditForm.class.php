@@ -36,6 +36,9 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 
 		// get theme
 		$this->theme = new Theme($this->themeLayout->themeID);
+
+		// get theme stylesheet options
+		$this->themeStylesheetOptions = ThemeStylesheet::getThemeStylesheetOptions($this->theme->themeID);
 	}
 
 	/**
@@ -47,7 +50,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 		if (!count($_POST)) {
 			// get values
 			$this->title = $this->themeLayout->title;
-			$this->styleSheets = $this->themeLayout->styleSheets;
+			$this->themeStylesheetIDs = $this->themeLayout->getAssignedThemeStylesheets();
 		}
 	}
 
@@ -58,7 +61,7 @@ class ThemeLayoutEditForm extends ThemeLayoutAddForm {
 		AbstractForm::save();
 
 		// update theme layout
-		$this->themeLayout->update($this->title, $this->styleSheets);
+		$this->themeLayout->update($this->title, $this->themeStylesheetIDs);
 
 		// reset cache
 		WCF::getCache()->clearResource('themeLayout-'.PACKAGE_ID);

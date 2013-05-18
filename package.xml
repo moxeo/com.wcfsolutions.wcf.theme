@@ -36,7 +36,18 @@
 		<languages languagecode="en">en.xml</languages>
 	</instructions>
 
-	<instructions type="update" fromversion="1.0.0 RC 1">
+	<instructions type="update" fromversion="1.0.0 RC 2">
+		<!-- files -->
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<sql>update.sql</sql>
+
+		<!-- config -->
+		<groupoptions>groupoptions.xml</groupoptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<thememoduletype>thememoduletype.xml</thememoduletype>
+
 		<!-- languages -->
 		<languages languagecode="de">de.xml</languages>
 		<languages languagecode="en">en.xml</languages>

@@ -71,6 +71,5 @@ DROP TABLE IF EXISTS wcf1_theme_stylesheet_to_layout;
 CREATE TABLE wcf1_theme_stylesheet_to_layout (
 	themeStylesheetID INT(10) NOT NULL DEFAULT 0,
 	themeLayoutID INT(10) NOT NULL DEFAULT 0,
-	showOrder INT(10) NOT NULL DEFAULT 0,
 	UNIQUE KEY (themeStylesheetID, themeLayoutID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

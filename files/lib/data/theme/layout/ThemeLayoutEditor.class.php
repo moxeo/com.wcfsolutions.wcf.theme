@@ -37,26 +37,78 @@ class ThemeLayoutEditor extends ThemeLayout {
 	 *
 	 * @param	integer			$themeID
 	 * @param	string			$title
-	 * @param	string			$styleSheets
+	 * @param	array			$themeStylesheetIDs
 	 * @param	integer			$packageID
 	 * @return	ThemeLayoutEditor
 	 */
-	public static function create($themeID, $title, $styleSheets, $packageID = PACKAGE_ID) {
+	public static function create($themeID, $title, $themeStylesheetIDs, $packageID = PACKAGE_ID) {
 		// create theme layout
 		$sql = "INSERT INTO	wcf".WCF_N."_theme_layout
-					(packageID, themeID, title, styleSheets)
-			VALUES		(".$packageID.", ".$themeID.", '".escapeString($title)."', '".escapeString($styleSheets)."')";
+					(packageID, themeID, title)
+			VALUES		(".$packageID.", ".$themeID.", '".escapeString($title)."')";
 		WCF::getDB()->sendQuery($sql);
 
 		// get new theme layout
 		$themeLayoutID = WCF::getDB()->getInsertID("wcf".WCF_N."_theme_layout", 'themeLayoutID');
 		$themeLayout = new ThemeLayoutEditor($themeLayoutID, null, null, false);
 
+		// assign stylesheets
+		if (count($themeStylesheetIDs)) {
+			$themeLayout->assignThemeStylesheets($themeStylesheetIDs);
+		}
+
 		// compile stylesheet
 		$themeLayout->compileStylesheet();
 
 		// return theme layout
 		return $themeLayout;
+	}
+
+	/**
+	 * Assigns stylesheets to this theme layout.
+	 *
+	 * @param	array		$themeStylesheetIDs
+	 */
+	public function assignThemeStylesheets($themeStylesheetIDs) {
+		$themeStylesheetIDs = array_unique($themeStylesheetIDs);
+
+		$inserts = '';
+		foreach ($themeStylesheetIDs as $themeStylesheetID) {
+			if (!empty($inserts)) $inserts .= ',';
+			$inserts .= '('.$themeStylesheetID.', '.$this->themeLayoutID.')';
+		}
+
+		// insert assignments
+		$sql = "INSERT  INTO 	wcf".WCF_N."_theme_stylesheet_to_layout
+					(themeStylesheetID, themeLayoutID)
+			VALUES		".$inserts;
+		WCF::getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * Removes assigned theme stylesheets.
+	 */
+	public function removeAssignedThemeStylesheets() {
+		$sql = "DELETE FROM 	wcf".WCF_N."_theme_stylesheet_to_layout
+			WHERE		themeLayoutID = ".$this->themeLayoutID;
+		WCF::getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * Returns the list of assigned theme stylesheets.
+	 *
+	 * @return	array
+	 */
+	public function getAssignedThemeStylesheets() {
+		$themeStylesheetIDs = array();
+		$sql = "SELECT	themeStylesheetID
+			FROM	wcf".WCF_N."_theme_stylesheet_to_layout
+			WHERE	themeLayoutID = ".$this->themeLayoutID;
+		$result = WCF::getDB()->sendQuery($sql);
+		while ($row = WCF::getDB()->fetchArray($result)) {
+			$themeStylesheetIDs[] = $row['themeStylesheetID'];
+		}
+		return $themeStylesheetIDs;
 	}
 
 	/**
@@ -83,18 +135,23 @@ class ThemeLayoutEditor extends ThemeLayout {
 	 * Updates this theme layout.
 	 *
 	 * @param	string		$title
-	 * @param	string		$styleSheets
+	 * @param	array		$themeStylesheetIDs
 	 */
-	public function update($title, $styleSheets) {
+	public function update($title, $themeStylesheetIDs) {
 		// update theme layout
 		$sql = "UPDATE	wcf".WCF_N."_theme_layout
-			SET	title = '".escapeString($title)."',
-				styleSheets = '".escapeString($styleSheets)."'
+			SET	title = '".escapeString($title)."'
 			WHERE	themeLayoutID = ".$this->themeLayoutID;
 		WCF::getDB()->sendQuery($sql);
 
 		$this->data['title'] = $title;
-		$this->data['styleSheets'] = $styleSheets;
+
+		// assign stylesheets
+		$this->removeAssignedThemeStylesheets();
+
+		if (count($themeStylesheetIDs)) {
+			$this->assignThemeStylesheets($themeStylesheetIDs);
+		}
 
 		// compile stylesheet
 		$this->compileStylesheet();
@@ -113,16 +170,20 @@ class ThemeLayoutEditor extends ThemeLayout {
 		// get theme
 		$theme = Theme::getTheme($this->themeID);
 
-		// determine required files
-		$files = array('theme/reset.less');
-		foreach ($this->getStyleSheets() as $stylesheet) {
-			$files[] = 'theme/'.$theme->dataLocation.'/'.$stylesheet.'.less';
-		}
+		// get theme stylesheet ids
+		$themeStylesheetIDs = $this->getAssignedThemeStylesheets();
+
+		// read theme stylesheets
+		require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetList.class.php');
+		$themeStylesheetList = new ThemeStylesheetList();
+		$themeStylesheetList->sqlLimit = 0;
+		$themeStylesheetList->sqlConditions = 'theme_stylesheet.themeStylesheetID IN ('.implode(',', $themeStylesheetIDs).')';
+		$themeStylesheetList->readObjects();
 
 		// get less code
-		$less = '';
-		foreach ($files as $file) {
-			$less .= '@import "'.$file.'";'."\n";
+		$less = '@import "theme/reset.less";';
+		foreach ($themeStylesheetList->getObjects() as $themeStylesheet) {
+			$less .= $themeStylesheet->lessCode;
 		}
 
 		// compile code
@@ -135,7 +196,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		}
 
 		// write stylesheet
-		file_put_contents(WCF_DIR.'theme/'.$this->dataLocation.'/theme'.$theme->themeID.'-'.$this->themeLayoutID.'.css', $css);
+		file_put_contents(WCF_DIR.'theme/theme'.$theme->themeID.'-'.$this->themeLayoutID.'.css', $css);
 	}
 
 	/**
@@ -209,6 +270,11 @@ class ThemeLayoutEditor extends ThemeLayout {
 	 */
 	public static function deleteAll($themeLayoutIDs) {
 		if (empty($themeLayoutIDs)) return;
+
+		// delete theme stylesheet assignments
+		$sql = "DELETE FROM	wcf".WCF_N."_theme_stylesheet_to_layout
+			WHERE		themeLayoutID IN (".$themeLayoutIDs.")";
+		WCF::getDB()->sendQuery($sql);
 
 		// delete theme module assignments
 		$sql = "DELETE FROM	wcf".WCF_N."_theme_module_to_layout

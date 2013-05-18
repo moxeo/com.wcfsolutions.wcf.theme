@@ -129,15 +129,6 @@ class ThemeLayout extends DatabaseObject {
 	}
 
 	/**
-	 * Returns a list of style sheets of this theme layout.
-	 *
-	 * @return	array
-	 */
-	public function getStyleSheets() {
-		return ArrayUtil::trim(explode("\n", $this->styleSheets));
-	}
-
-	/**
 	 * Returns the theme layout options.
 	 *
 	 * @return	array
@@ -186,3 +177,4 @@ class ThemeLayout extends DatabaseObject {
 		return $themeLayouts[$themeLayoutID];
 	}
 }
+?>

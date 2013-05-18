@@ -1,10 +1,10 @@
 <?php
 // wcf imports
-require_once(WCF_DIR.'lib/data/theme/layout/ThemeLayoutList.class.php');
+require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetList.class.php');
 require_once(WCF_DIR.'lib/page/SortablePage.class.php');
 
 /**
- * Shows a list of all theme layouts.
+ * Shows a list of all theme stylesheets.
  *
  * @author	Sebastian Oettl
  * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
@@ -13,11 +13,11 @@ require_once(WCF_DIR.'lib/page/SortablePage.class.php');
  * @subpackage	acp.page
  * @category	Community Framework
  */
-class ThemeLayoutListPage extends SortablePage {
+class ThemeStylesheetListPage extends SortablePage {
 	// system
-	public $templateName = 'themeLayoutList';
+	public $templateName = 'themeStylesheetList';
 	public $defaultSortField = 'title';
-	public $neededPermissions = array('admin.theme.canEditThemeLayout', 'admin.theme.canDeleteThemeLayout');
+	public $neededPermissions = array('admin.theme.canEditThemeStylesheet', 'admin.theme.canDeleteThemeStylesheet');
 
 	/**
 	 * theme id
@@ -38,14 +38,14 @@ class ThemeLayoutListPage extends SortablePage {
 	 *
 	 * @var	integer
 	 */
-	public $deletedThemeLayoutID = 0;
+	public $deletedThemeStylesheetID = 0;
 
 	/**
 	 * theme layout list object
 	 *
-	 * @var	ThemeLayoutList
+	 * @var	ThemeStylesheetList
 	 */
-	public $themeLayoutList = null;
+	public $themeStylesheetList = null;
 
 	/**
 	 * list of available themes
@@ -60,7 +60,7 @@ class ThemeLayoutListPage extends SortablePage {
 	public function readParameters() {
 		parent::readParameters();
 
-		if (isset($_REQUEST['deletedThemeLayoutID'])) $this->deletedThemeLayoutID = intval($_REQUEST['deletedThemeLayoutID']);
+		if (isset($_REQUEST['deletedThemeStylesheetID'])) $this->deletedThemeStylesheetID = intval($_REQUEST['deletedThemeStylesheetID']);
 
 		// get theme
 		if (isset($_REQUEST['themeID'])) $this->themeID = intval($_REQUEST['themeID']);
@@ -69,9 +69,9 @@ class ThemeLayoutListPage extends SortablePage {
 		}
 
 		// init theme layout list
-		$this->themeLayoutList = new ThemeLayoutList();
-		$this->themeLayoutList->sqlConditions = "theme_layout.themeID = ".$this->themeID."
-							AND theme_layout.packageID IN (
+		$this->themeStylesheetList = new ThemeStylesheetList();
+		$this->themeStylesheetList->sqlConditions = "theme_stylesheet.themeID = ".$this->themeID."
+							AND theme_stylesheet.packageID IN (
 								SELECT	dependency
 								FROM	wcf".WCF_N."_package_dependency
 								WHERE	packageID = ".PACKAGE_ID."
@@ -88,10 +88,10 @@ class ThemeLayoutListPage extends SortablePage {
 		$this->themeOptions = Theme::getThemes();
 
 		// read theme layouts
-		$this->themeLayoutList->sqlOffset = ($this->pageNo - 1) * $this->itemsPerPage;
-		$this->themeLayoutList->sqlLimit = $this->itemsPerPage;
-		$this->themeLayoutList->sqlOrderBy = ($this->sortField != 'themeModules' ? 'theme_layout.' : '').$this->sortField." ".$this->sortOrder;
-		$this->themeLayoutList->readObjects();
+		$this->themeStylesheetList->sqlOffset = ($this->pageNo - 1) * $this->itemsPerPage;
+		$this->themeStylesheetList->sqlLimit = $this->itemsPerPage;
+		$this->themeStylesheetList->sqlOrderBy = 'theme_stylesheet.'.$this->sortField." ".$this->sortOrder;
+		$this->themeStylesheetList->readObjects();
 	}
 
 	/**
@@ -101,9 +101,8 @@ class ThemeLayoutListPage extends SortablePage {
 		parent::validateSortField();
 
 		switch ($this->sortField) {
-			case 'themeLayoutID':
-			case 'title':
-			case 'themeModules': break;
+			case 'themeStylesheetID':
+			case 'title': break;
 			default: $this->sortField = $this->defaultSortField;
 		}
 	}
@@ -114,7 +113,7 @@ class ThemeLayoutListPage extends SortablePage {
 	public function countItems() {
 		parent::countItems();
 
-		return $this->themeLayoutList->countObjects();
+		return $this->themeStylesheetList->countObjects();
 	}
 
 
@@ -127,9 +126,9 @@ class ThemeLayoutListPage extends SortablePage {
 		WCF::getTPL()->assign(array(
 			'themeID' => $this->themeID,
 			'theme' => $this->theme,
-			'themeLayouts' => $this->themeLayoutList->getObjects(),
+			'themeStylesheets' => $this->themeStylesheetList->getObjects(),
 			'themeOptions' => $this->themeOptions,
-			'deletedThemeLayoutID' => $this->deletedThemeLayoutID
+			'deletedThemeStylesheetID' => $this->deletedThemeStylesheetID
 		));
 	}
 
@@ -138,7 +137,7 @@ class ThemeLayoutListPage extends SortablePage {
 	 */
 	public function show() {
 		// enable menu item
-		WCFACP::getMenu()->setActiveMenuItem('wcf.acp.menu.link.theme.layout.view');
+		WCFACP::getMenu()->setActiveMenuItem('wcf.acp.menu.link.theme.stylesheet.view');
 
 		parent::show();
 	}
