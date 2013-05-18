@@ -107,6 +107,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		// import compiler
 		require_once(WCF_DIR.'lib/system/theme/3rdParty/lessc.inc.php');
 		$compiler = new lessc();
+		$compiler->setFormatter("compressed");
 		$compiler->setImportDir(array(WCF_DIR));
 
 		// get theme
