@@ -41,6 +41,8 @@
 		<item name="wcf.acp.menu.link.theme.layout.view"><![CDATA[List layouts]]></item>
 		<item name="wcf.acp.menu.link.theme.module.add"><![CDATA[Add module]]></item>
 		<item name="wcf.acp.menu.link.theme.module.view"><![CDATA[List modules]]></item>
+		<item name="wcf.acp.menu.link.theme.stylesheet.add"><![CDATA[Add style sheet]]></item>
+		<item name="wcf.acp.menu.link.theme.stylesheet.view"><![CDATA[List style sheets]]></item>
 		<item name="wcf.acp.menu.link.theme.view"><![CDATA[List themes]]></item>
 	</category>
 	<category name="wcf.acp.package">
