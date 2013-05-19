@@ -91,6 +91,7 @@ class ThemeEditor extends Theme {
 
 		// files block
 		$string .= "\t<files>\n";
+		$string .= "\t\t<stylesheets>stylesheets.xml</stylesheets>\n"; // stylesheets
 		if ($exportTemplates && $this->templatePackID) $string .= "\t\t<templates>templates.tar</templates>\n"; // templates
 		$string .= "\t\t<data>data.tar</data>\n"; // data
 		$string .= "\t</files>\n";
@@ -98,6 +99,25 @@ class ThemeEditor extends Theme {
 		$string .= "</theme>";
 		// append theme info file to theme tar
 		$themeTar->addString(self::INFO_FILE, $string);
+		unset($string);
+
+		// create stylesheets file
+		$string = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<stylesheets xmlns=\"http://www.wcfsolutions.com\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.wcfsolutions.com http://www.wcfsolutions.com/XSD/theme-stylesheet.xsd\">\n";
+
+		// read theme stylesheets
+		require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetList.class.php');
+		$themeStylesheetList = new ThemeStylesheetList();
+		$themeStylesheetList->sqlLimit = 0;
+		$themeStylesheetList->sqlConditions = 'theme_stylesheet.themeID = '.$this->themeID;
+		$themeStylesheetList->readObjects();
+
+		foreach ($themeStylesheetList->getObjects() as $themeStylesheet) {
+			$string .= "\t<stylesheet title=\"".StringUtil::encodeHTML((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $themeStylesheet->title) : $themeStylesheet->title))."\"><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $themeStylesheet->lessCode) : $themeStylesheet->lessCode))."]]></stylesheet>\n";
+		}
+
+		$string .= "</stylesheets>";
+		// append stylesheets file to theme tar
+		$themeTar->addString('stylesheets.xml', $string);
 		unset($string);
 
 		if ($exportTemplates && $this->templatePackID) {
@@ -320,6 +340,12 @@ class ThemeEditor extends Theme {
 		// save theme
 		$theme = self::create($data['name'], $templatePackID, $data['description'], $data['version'], $data['date'], $dataLocation, $data['copyright'], $data['license'], $data['authorName'], $data['authorURL'], $packageID);
 
+		// import stylesheets
+		require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetEditor.class.php');
+		foreach ($data['stylesheets'] as $title => $lessCode) {
+			ThemeStylesheetEditor::create($theme->themeID, $title, $lessCode, $packageID);
+		}
+
 		// import data
 		if (!empty($data['data'])) {
 			// get unique data location name
@@ -445,7 +471,7 @@ class ThemeEditor extends Theme {
 		$xmlContent = $themeXML->getElementTree('theme');
 		$data = array(
 			'name' => '', 'description' => '', 'version' => '', 'date' => '0000-00-00', 'copyright' => '',
-			'license' => '', 'authorName' => '', 'authorURL' => '', 'templates' => '', 'data' => ''
+			'license' => '', 'authorName' => '', 'authorURL' => '', 'stylesheets' => array(), 'templates' => '', 'data' => ''
 
 		);
 
@@ -455,14 +481,14 @@ class ThemeEditor extends Theme {
 					foreach ($child['children'] as $general) {
 						switch ($general['name']) {
 							case 'themename':
-								$data['name'] = StringUtil::convertEncoding('UTF-8', CHARSET, $general['cdata']);
+								$data['name'] = $general['cdata'];
 								break;
 							case 'description':
 							case 'version':
 							case 'date':
 							case 'copyright':
 							case 'license':
-								$data[$general['name']] = StringUtil::convertEncoding('UTF-8', CHARSET, $general['cdata']);
+								$data[$general['name']] = $general['cdata'];
 								break;
 						}
 					}
@@ -472,10 +498,8 @@ class ThemeEditor extends Theme {
 					foreach ($child['children'] as $author) {
 						switch ($author['name']) {
 							case 'authorname':
-								$data['authorName'] = StringUtil::convertEncoding('UTF-8', CHARSET, $author['cdata']);
-								break;
 							case 'authorurl':
-								$data['authorURL'] = StringUtil::convertEncoding('UTF-8', CHARSET, $author['cdata']);
+								$data[$author['name']] = $author['cdata'];
 								break;
 						}
 					}
@@ -484,6 +508,7 @@ class ThemeEditor extends Theme {
 				case 'files':
 					foreach ($child['children'] as $files) {
 						switch ($files['name']) {
+							case 'stylesheets':
 							case 'templates':
 							case 'data':
 								$data[$files['name']] = $files['cdata'];
@@ -497,8 +522,56 @@ class ThemeEditor extends Theme {
 		if (empty($data['name'])) {
 			throw new SystemException("required tag 'themename' is missing in '".self::INFO_FILE."'", 100002);
 		}
+		if (empty($data['stylesheets'])) {
+			throw new SystemException("required tag 'stylesheets' is missing in '".self::INFO_FILE."'", 100002);
+		}
+
+		// search stylesheets.xml
+		$i = $tar->getIndexByFilename($data['stylesheets']);
+		if ($i === false) {
+			throw new SystemException("unable to find required file '".$data['stylesheets']."' in theme archive", 100001);
+		}
+
+		// open variables.xml
+		$data['stylesheets'] = self::readStylesheetsData($tar->extractToString($i));
+
+		// convert encoding
+		if (CHARSET != 'UTF-8') {
+			foreach ($data as $key => $value) {
+				if (!in_array($key, array('stylesheets', 'templates', 'data'))) {
+					$data[$key] = StringUtil::convertEncoding('UTF-8', CHARSET, $value);
+				}
+			}
+			foreach ($data['stylesheets'] as $key => $value) {
+				$key = StringUtil::convertEncoding('UTF-8', CHARSET, $key);
+				$data['stylesheets'][$key] = StringUtil::convertEncoding('UTF-8', CHARSET, $value);
+			}
+		}
 
 		return $data;
+	}
+
+	/**
+	 * Reads the data of a stylesheets.xml file.
+	 *
+	 * @param	string		$string
+	 * @return	array		data
+	 */
+	public static function readStylesheetsData($string) {
+		// open variables.xml
+		$variablesXML = new XML();
+		$variablesXML->loadString($string);
+		$variablesXMLContent = $variablesXML->getElementTree('stylesheets');
+
+		// get variables
+		$variables = array();
+		foreach ($variablesXMLContent['children'] as $variable) {
+			if (isset($variable['attrs']['title'])) {
+				$variables[$variable['attrs']['title']] = $variable['cdata'];
+			}
+		}
+
+		return $variables;
 	}
 
 	/**
