@@ -7,7 +7,7 @@ require_once(WCF_DIR.'lib/page/SortablePage.class.php');
  * Shows a list of all theme layouts.
  *
  * @author	Sebastian Oettl
- * @copyright	2009-2012 WCF Solutions <http://www.wcfsolutions.com/>
+ * @copyright	2009-2013 WCF Solutions <http://www.wcfsolutions.com/>
  * @license	GNU Lesser General Public License <http://opensource.org/licenses/lgpl-license.php>
  * @package	com.wcfsolutions.wcf.theme
  * @subpackage	acp.page
