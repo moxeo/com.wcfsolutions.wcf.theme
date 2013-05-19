@@ -42,6 +42,11 @@ class ThemeLayoutAddForm extends ACPForm {
 	 */
 	public $themeLayout = null;
 
+	/**
+	 * list of available theme stylesheets
+	 *
+	 * @var	array
+	 */
 	public $themeStylesheetOptions = array();
 
 	// parameters

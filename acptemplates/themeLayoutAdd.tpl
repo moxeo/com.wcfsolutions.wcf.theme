@@ -84,12 +84,6 @@
 						inlineHelp.register('title');
 					//]]></script>
 
-					{if $additionalDataFields|isset}{@$additionalDataFields}{/if}
-				</fieldset>
-
-				<fieldset>
-					<legend>{lang}wcf.acp.theme.layout.display{/lang}</legend>
-
 					<div class="formElement" id="themeStylesheetIDsDiv">
 						<div class="formFieldLabel">
 							<label>{lang}wcf.acp.theme.layout.themeStylesheetIDs{/lang}</label>
@@ -114,7 +108,7 @@
 						inlineHelp.register('themeStylesheetIDs');
 					//]]></script>
 
-					{if $additionalDisplayFields|isset}{@$additionalDisplayFields}{/if}
+					{if $additionalDataFields|isset}{@$additionalDataFields}{/if}
 				</fieldset>
 
 				{if $additionalFields|isset}{@$additionalFields}{/if}

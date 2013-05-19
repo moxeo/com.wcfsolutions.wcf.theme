@@ -163,6 +163,22 @@ class ThemeEditor extends Theme {
 	 * Deletes this theme.
 	 */
 	public function delete() {
+		// get all theme stylesheet ids
+		$themeStylesheetIDs = '';
+		$sql = "SELECT	themeStylesheetID
+			FROM	wcf".WCF_N."_theme_stylesheet
+			WHERE	themeID = ".$this->themeID;
+		$result = WCF::getDB()->sendQuery($sql);
+		while ($row = WCF::getDB()->fetchArray($result)) {
+			if (!empty($themeStylesheetIDs)) $themeStylesheetIDs .= ',';
+			$themeStylesheetIDs .= $row['themeStylesheetID'];
+		}
+		if (!empty($themeStylesheetIDs)) {
+			// delete theme modules
+			require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetEditor.class.php');
+			ThemeStylesheetEditor::deleteAll($themeStylesheetIDs);
+		}
+
 		// get all theme module ids
 		$themeModuleIDs = '';
 		$sql = "SELECT	themeModuleID
