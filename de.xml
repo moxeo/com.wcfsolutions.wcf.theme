@@ -7,6 +7,8 @@
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeLayout.description"><![CDATA[Mitglieder dieser Benutzergruppe können Layouts erstellen.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeModule"><![CDATA[Kann Module erstellen]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeModule.description"><![CDATA[Mitglieder dieser Benutzergruppe können Module erstellen.]]></item>
+		<item name="wcf.acp.group.option.admin.theme.canAddThemeStylesheet"><![CDATA[Kann Stylesheets erstellen]]></item>
+		<item name="wcf.acp.group.option.admin.theme.canAddThemeStylesheet.description"><![CDATA[Mitglieder dieser Benutzergruppe können Stylesheets erstellen.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canDeleteTheme"><![CDATA[Kann Themes löschen]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canDeleteTheme.description"><![CDATA[Mitglieder dieser Benutzergruppe können Themes löschen.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canDeleteThemeLayout"><![CDATA[Kann Layouts löschen]]></item>
@@ -19,6 +21,8 @@
 		<item name="wcf.acp.group.option.admin.theme.canEditThemeLayout.description"><![CDATA[Mitglieder dieser Benutzergruppe können Layouts bearbeiten.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canEditThemeModule"><![CDATA[Kann Module bearbeiten]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canEditThemeModule.description"><![CDATA[Mitglieder dieser Benutzergruppe können Module bearbeiten.]]></item>
+		<item name="wcf.acp.group.option.admin.theme.canEditThemeStylesheets"><![CDATA[Kann Stylesheets bearbeiten]]></item>
+		<item name="wcf.acp.group.option.admin.theme.canEditThemeStylesheets.description"><![CDATA[Mitglieder dieser Benutzergruppe können Stylesheets bearbeiten.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canExportTheme"><![CDATA[Kann Themes exportieren]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canExportTheme.description"><![CDATA[Mitglieder dieser Benutzergruppe können Themes exportieren.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canImportTheme"><![CDATA[Kann Themes importieren]]></item>
@@ -35,6 +39,8 @@
 		<item name="wcf.acp.menu.link.theme.layout.view"><![CDATA[Layouts auflisten]]></item>
 		<item name="wcf.acp.menu.link.theme.module.add"><![CDATA[Modul hinzufügen]]></item>
 		<item name="wcf.acp.menu.link.theme.module.view"><![CDATA[Module auflisten]]></item>
+		<item name="wcf.acp.menu.link.theme.stylesheet.add"><![CDATA[Stylesheet hinzufügen]]></item>
+		<item name="wcf.acp.menu.link.theme.stylesheet.view"><![CDATA[Stylesheets auflisten]]></item>
 		<item name="wcf.acp.menu.link.theme.view"><![CDATA[Themes auflisten]]></item>
 	</category>
 	<category name="wcf.acp.package">
@@ -87,7 +93,6 @@
 		<item name="wcf.acp.theme.layout.delete"><![CDATA[Layout löschen]]></item>
 		<item name="wcf.acp.theme.layout.delete.success"><![CDATA[Das Layout wurde erfolgreich gelöscht.]]></item>
 		<item name="wcf.acp.theme.layout.delete.sure"><![CDATA[Wollen Sie dieses Layout wirklich löschen?]]></item>
-		<item name="wcf.acp.theme.layout.display"><![CDATA[Darstellung]]></item>
 		<item name="wcf.acp.theme.layout.edit"><![CDATA[Layout bearbeiten]]></item>
 		<item name="wcf.acp.theme.layout.edit.success"><![CDATA[Das Layout wurde erfolgreich bearbeitet.]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment"><![CDATA[Modulzuordnung]]></item>
@@ -107,12 +112,12 @@
 		<item name="wcf.acp.theme.layout.moduleAssignment.themeLayout.description"><![CDATA[Wählen Sie das Layout aus, dessen Module Sie verwalten möchten.]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment.themeModulePosition"><![CDATA[Position]]></item>
 		<item name="wcf.acp.theme.layout.moduleAssignment.themeModulePosition.description"><![CDATA[Wählen Sie die Position des Layouts &raquo;{$themeLayout->title}&laquo; aus, deren Module Sie verwalten möchten.]]></item>
-		<item name="wcf.acp.theme.layout.styleSheets"><![CDATA[Stylesheets]]></item>
-		<item name="wcf.acp.theme.layout.styleSheets.description"><![CDATA[Namen der Stylesheets für dieses Layout. Pro Zeile ein Stylesheet angeben.]]></item>
 		<item name="wcf.acp.theme.layout.themeID"><![CDATA[Theme]]></item>
 		<item name="wcf.acp.theme.layout.themeID.description"><![CDATA[Wählen Sie hier das Theme, zu dem Sie ein Layout hinzufügen möchten.]]></item>
 		<item name="wcf.acp.theme.layout.themeLayoutID"><![CDATA[Layout-ID]]></item>
 		<item name="wcf.acp.theme.layout.themeModules"><![CDATA[Module]]></item>
+		<item name="wcf.acp.theme.layout.themeStylesheetIDs"><![CDATA[Stylesheets]]></item>
+		<item name="wcf.acp.theme.layout.themeStylesheetIDs.description"><![CDATA[Wählen Sie die Stylesheets, die für dieses Layout verwendet werden sollen.]]></item>
 		<item name="wcf.acp.theme.layout.title"><![CDATA[Titel]]></item>
 		<item name="wcf.acp.theme.layout.title.description"><![CDATA[Bestimmen Sie hier den Titel des Layouts.]]></item>
 		<item name="wcf.acp.theme.layout.view"><![CDATA[Layouts]]></item>
@@ -154,6 +159,25 @@
 		<item name="wcf.acp.theme.module.view.count.noThemes"><![CDATA[Derzeit sind keine Themes vorhanden, zu denen Module hinzugefügt werden könnten.]]></item>
 		<item name="wcf.acp.theme.sortBy"><![CDATA[Sortierung nach]]></item>
 		<item name="wcf.acp.theme.sorting"><![CDATA[Sortierung]]></item>
+		<item name="wcf.acp.theme.stylesheet.add"><![CDATA[Stylesheet hinzufügen]]></item>
+		<item name="wcf.acp.theme.stylesheet.add.success"><![CDATA[Das Stylesheet wurde erfolgreich hinzugefügt.]]></item>
+		<item name="wcf.acp.theme.stylesheet.data"><![CDATA[Daten]]></item>
+		<item name="wcf.acp.theme.stylesheet.delete"><![CDATA[Stylesheet löschen]]></item>
+		<item name="wcf.acp.theme.stylesheet.delete.success"><![CDATA[Das Stylesheet wurde erfolgreich gelöscht.]]></item>
+		<item name="wcf.acp.theme.stylesheet.delete.sure"><![CDATA[Wollen Sie dieses Stylesheet wirklich löschen?]]></item>
+		<item name="wcf.acp.theme.stylesheet.edit"><![CDATA[Stylesheet bearbeiten]]></item>
+		<item name="wcf.acp.theme.stylesheet.edit.success"><![CDATA[Das Stylesheet wurde erfolgreich bearbeitet.]]></item>
+		<item name="wcf.acp.theme.stylesheet.lessCode"><![CDATA[LESS-Code]]></item>
+		<item name="wcf.acp.theme.stylesheet.lessCode.description"><![CDATA[Geben Sie hier den LESS-kompatiblen Code für das Stylesheet ein.]]></item>
+		<item name="wcf.acp.theme.stylesheet.themeID"><![CDATA[Theme]]></item>
+		<item name="wcf.acp.theme.stylesheet.themeID.description"><![CDATA[Wählen Sie hier das Theme, zu dem Sie ein Stylesheet hinzufügen möchten.]]></item>
+		<item name="wcf.acp.theme.stylesheet.themeStylesheetID"><![CDATA[Stylesheet-ID]]></item>
+		<item name="wcf.acp.theme.stylesheet.title"><![CDATA[Titel]]></item>
+		<item name="wcf.acp.theme.stylesheet.title.description"><![CDATA[Bestimmen Sie hier den Titel des Stylesheets.]]></item>
+		<item name="wcf.acp.theme.stylesheet.view"><![CDATA[Stylesheets]]></item>
+		<item name="wcf.acp.theme.stylesheet.view.count"><![CDATA[Insgesamt {#$items} Stylesheet{if $items != 1}s{/if}]]></item>
+		<item name="wcf.acp.theme.stylesheet.view.count.noThemeLayouts"><![CDATA[Derzeit sind keine Stylesheets vorhanden..]]></item>
+		<item name="wcf.acp.theme.stylesheet.view.count.noThemes"><![CDATA[Derzeit sind keine Themes vorhanden, zu denen Stylesheets hinzugefügt werden könnten.]]></item>
 		<item name="wcf.acp.theme.template.pack.default"><![CDATA[Standardtemplates]]></item>
 		<item name="wcf.acp.theme.templatePackID"><![CDATA[Templategruppe]]></item>
 		<item name="wcf.acp.theme.templatePackID.description"><![CDATA[Wählen Sie hier die gewünschte Templategruppe, welche Sie in Ihrem Theme verwenden möchten.]]></item>
