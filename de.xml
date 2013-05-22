@@ -5,7 +5,7 @@
 		<item name="wcf.acp.group.option.admin.theme.canAddTheme.description"><![CDATA[Mitglieder dieser Benutzergruppe können Themes erstellen.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeLayout"><![CDATA[Kann Layouts erstellen]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeLayout.description"><![CDATA[Mitglieder dieser Benutzergruppe können Layouts erstellen.]]></item>
-		<item name="wcwcf.acp.theme.stylesheet.view.count.noThemeStylesheetsf.acp.group.option.admin.theme.canAddThemeModule"><![CDATA[Kann Module erstellen]]></item>
+		<item name="wcf.acp.group.option.admin.theme.canAddThemeModule"><![CDATA[Kann Module erstellen]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeModule.description"><![CDATA[Mitglieder dieser Benutzergruppe können Module erstellen.]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeStylesheet"><![CDATA[Kann Stylesheets erstellen]]></item>
 		<item name="wcf.acp.group.option.admin.theme.canAddThemeStylesheet.description"><![CDATA[Mitglieder dieser Benutzergruppe können Stylesheets erstellen.]]></item>
