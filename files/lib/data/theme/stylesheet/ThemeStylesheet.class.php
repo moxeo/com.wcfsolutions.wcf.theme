@@ -20,7 +20,7 @@ class ThemeStylesheet extends DatabaseObject {
 	 * @param 	integer		$themeStylesheetID
 	 * @param 	array		$row
 	 */
-	public function __construct($themeStylesheetID, $row = null, $cacheObject = null) {
+	public function __construct($themeStylesheetID, $row = null) {
 		if ($themeStylesheetID !== null) {
 			$sql = "SELECT	*
 				FROM 	wcf".WCF_N."_theme_stylesheet

@@ -176,6 +176,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		// read theme stylesheets
 		require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetList.class.php');
 		$themeStylesheetList = new ThemeStylesheetList();
+		$themeStylesheetList->sqlOrderBy = 'theme_stylesheet.themeStylesheetID ASC';
 		$themeStylesheetList->sqlLimit = 0;
 		$themeStylesheetList->sqlConditions = 'theme_stylesheet.themeStylesheetID IN ('.implode(',', $themeStylesheetIDs).')';
 		$themeStylesheetList->readObjects();

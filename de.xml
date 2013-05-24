@@ -178,7 +178,7 @@
 		<item name="wcf.acp.theme.stylesheet.title.description"><![CDATA[Bestimmen Sie hier den Titel des Stylesheets.]]></item>
 		<item name="wcf.acp.theme.stylesheet.view"><![CDATA[Stylesheets]]></item>
 		<item name="wcf.acp.theme.stylesheet.view.count"><![CDATA[Insgesamt {#$items} Stylesheet{if $items != 1}s{/if}]]></item>
-		<item name="wcf.acp.theme.stylesheet.view.count.noThemeLayouts"><![CDATA[Derzeit sind keine Stylesheets vorhanden..]]></item>
+		<item name="wcf.acp.theme.stylesheet.view.count.noThemeStylesheets"><![CDATA[Derzeit sind keine Stylesheets vorhanden..]]></item>
 		<item name="wcf.acp.theme.stylesheet.view.count.noThemes"><![CDATA[Derzeit sind keine Themes vorhanden, zu denen Stylesheets hinzugefügt werden könnten.]]></item>
 		<item name="wcf.acp.theme.template.pack.default"><![CDATA[Standardtemplates]]></item>
 		<item name="wcf.acp.theme.templatePackID"><![CDATA[Templategruppe]]></item>

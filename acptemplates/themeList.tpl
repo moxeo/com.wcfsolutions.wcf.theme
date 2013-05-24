@@ -12,7 +12,7 @@
 </div>
 
 {if $deletedThemeID}
-	<p class="success">{lang}wcf.acp.theme.delete.success{/lang}</p>	
+	<p class="success">{lang}wcf.acp.theme.delete.success{/lang}</p>
 {/if}
 
 <div class="contentHeader">
@@ -36,7 +36,7 @@
 							{$theme->themeName}
 						{/if}
 					</h3>
-					
+
 					<div class="messageBody">
 						{if $theme->authorName != ''}
 							<div class="formElement">
@@ -121,7 +121,7 @@
 							</div>
 						{/if}
 					</div>
-					
+
 					<div class="messageFooter">
 						<div class="smallButtons">
 							<ul>
@@ -130,7 +130,7 @@
 									<li><a href="index.php?form=ThemeExport&amp;themeID={@$theme->themeID}}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.theme.exportButton{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/exportS.png" alt="" /> <span>{lang}wcf.acp.theme.exportButton{/lang}</span></a></li>
 								{/if}
 								{if $this->user->getPermission('admin.theme.canDeleteTheme')}
-									<li><a onclick="return confirm('{lang}wcf.acp.theme.delete.sure{/lang}')" href="index.php?action=ThemeDelete&amp;themeID={@$theme->themeID}}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.theme.delete{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/deleteS.png" alt="" /> <span>{lang}wcf.acp.theme.delete{/lang}</span></a></li>
+									<li><a onclick="return confirm('{lang}wcf.acp.theme.delete.sure{/lang}')" href="index.php?action=ThemeDelete&amp;themeID={@$theme->themeID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.theme.delete{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/deleteS.png" alt="" /> <span>{lang}wcf.acp.theme.delete{/lang}</span></a></li>
 								{/if}
 								{if $this->user->getPermission('admin.theme.canEditTheme')}
 									<li><a href="index.php?form=ThemeEdit&amp;themeID={@$theme->themeID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.theme.editButton{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/editS.png" alt="" /> <span>{lang}wcf.acp.theme.editButton{/lang}</span></a></li>
@@ -154,7 +154,7 @@
 					<div class="themeSort">
 						<input type="hidden" name="page" value="ThemeList" />
 						<input type="hidden" name="pageNo" value="{@$pageNo}" />
-						
+
 						<div class="floatedElement">
 							<label for="sortField">{lang}wcf.acp.theme.sortBy{/lang}</label>
 							<select name="sortField" id="sortField">
@@ -167,11 +167,11 @@
 								<option value="DESC"{if $sortOrder == 'DESC'} selected="selected"{/if}>{lang}wcf.global.sortOrder.descending{/lang}</option>
 							</select>
 						</div>
-						
+
 						<div class="floatedElement">
 							<input type="image" class="inputImage" src="{@RELATIVE_WCF_DIR}icon/submitS.png" alt="{lang}wcf.global.button.submit{/lang}" />
 						</div>
-	
+
 						{@SID_INPUT_TAG}
 					</div>
 				</form>
@@ -181,7 +181,7 @@
 
 	<div class="contentFooter">
 		{@$pagesLinks}
-		
+
 		{if $this->user->getPermission('admin.theme.canAddTheme')}
 			<div class="largeButtons">
 				<ul><li><a href="index.php?form=ThemeAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/themeAddM.png" alt="" title="{lang}wcf.acp.theme.add{/lang}" /> <span>{lang}wcf.acp.theme.add{/lang}</span></a></li></ul>
