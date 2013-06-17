@@ -3,8 +3,8 @@
 	<packageinformation>
 		<packagename>Theme System</packagename>
 		<isunique>1</isunique>
-		<version>1.1.0 Alpha 1</version>
-		<date>2013-05-19</date>
+		<version>1.1.0 Alpha 2</version>
+		<date>2013-06-17</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -34,6 +34,12 @@
 		<!-- languages -->
 		<languages languagecode="de">de.xml</languages>
 		<languages languagecode="en">en.xml</languages>
+	</instructions>
+
+	<instructions type="update" fromversion="1.1.0 Alpha 1">
+		<!-- files -->
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
 	</instructions>
 
 	<instructions type="update" fromversion="1.0.0 RC 2">
