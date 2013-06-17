@@ -176,6 +176,7 @@
 		<item name="wcf.acp.theme.stylesheet.themeStylesheetID"><![CDATA[Style sheet ID]]></item>
 		<item name="wcf.acp.theme.stylesheet.title"><![CDATA[Title]]></item>
 		<item name="wcf.acp.theme.stylesheet.title.description"><![CDATA[Enter the title of the style sheet here.]]></item>
+		<item name="wcf.acp.theme.stylesheet.lessCode.error.syntaxError"><![CDATA[The entered LESS code contains mistakes.]]></item>
 		<item name="wcf.acp.theme.stylesheet.view"><![CDATA[Style sheets]]></item>
 		<item name="wcf.acp.theme.stylesheet.view.count"><![CDATA[There is a total of {#$items} style sheet{if $items != 1}s{/if}]]></item>
 		<item name="wcf.acp.theme.stylesheet.view.count.noThemeStylesheets"><![CDATA[Currently there are no style sheets available.]]></item>

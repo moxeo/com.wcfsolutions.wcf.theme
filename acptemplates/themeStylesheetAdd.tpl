@@ -84,12 +84,17 @@
 						inlineHelp.register('title');
 					//]]></script>
 
-					<div class="formElement" id="lessCodeDiv">
+					<div class="formElement{if $errorField == 'lessCode'} formError{/if}" id="lessCodeDiv">
 						<div class="formFieldLabel">
 							<label for="lessCode">{lang}wcf.acp.theme.stylesheet.lessCode{/lang}</label>
 						</div>
 						<div class="formField">
 							<textarea id="lessCode" name="lessCode" cols="40" rows="40">{$lessCode}</textarea>
+							{if $errorField == 'lessCode'}
+								<p class="innerError">
+									{if $errorType == 'syntaxError'}{lang}wcf.acp.theme.stylesheet.lessCode.error.syntaxError{/lang}{/if}
+								</p>
+							{/if}
 						</div>
 						<div class="formFieldDesc hidden" id="lessCodeHelpMessage">
 							<p>{lang}wcf.acp.theme.stylesheet.lessCode.description{/lang}</p>

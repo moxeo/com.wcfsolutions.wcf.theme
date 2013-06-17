@@ -171,6 +171,7 @@
 		<item name="wcf.acp.theme.stylesheet.edit.success"><![CDATA[Das Stylesheet wurde erfolgreich bearbeitet.]]></item>
 		<item name="wcf.acp.theme.stylesheet.lessCode"><![CDATA[LESS-Code]]></item>
 		<item name="wcf.acp.theme.stylesheet.lessCode.description"><![CDATA[Geben Sie hier den LESS-kompatiblen Code für das Stylesheet ein.]]></item>
+		<item name="wcf.acp.theme.stylesheet.lessCode.error.syntaxError"><![CDATA[Der eingegebene LESS-Code enthält Fehler.]]></item>
 		<item name="wcf.acp.theme.stylesheet.themeID"><![CDATA[Theme]]></item>
 		<item name="wcf.acp.theme.stylesheet.themeID.description"><![CDATA[Wählen Sie hier das Theme, zu dem Sie ein Stylesheet hinzufügen möchten.]]></item>
 		<item name="wcf.acp.theme.stylesheet.themeStylesheetID"><![CDATA[Stylesheet-ID]]></item>

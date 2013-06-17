@@ -83,6 +83,18 @@ class ThemeStylesheetAddForm extends ACPForm {
 		if (empty($this->lessCode)) {
 			throw new UserInputException('lessCode');
 		}
+
+		// test less code
+		require_once(WCF_DIR.'lib/system/theme/3rdParty/lessc.inc.php');
+		$compiler = new lessc();
+		$compiler->setImportDir(array(WCF_DIR));
+
+		try {
+			$compiler->compile($this->lessCode);
+		}
+		catch (Exception $e) {
+			throw new UserInputException('lessCode', 'syntaxError');
+		}
 	}
 
 	/**
