@@ -58,6 +58,13 @@ interface ThemeModuleType {
 	 */
 	public function getPreviewHTML(ThemeModule $themeModule);
 
+	/**
+	 * Returns the HTML tag of modules with this theme module type.
+	 *
+	 * @return	string
+	 */
+	public function getHTMLTag();
+
 	// form methods
 	/**
 	 * Reads the given form parameters.

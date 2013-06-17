@@ -55,6 +55,13 @@ class AbstractThemeModuleType implements ThemeModuleType {
 		return '### '.WCF::getLanguage()->get('wcf.theme.module.type.'.$themeModule->themeModuleType).' ###';
 	}
 
+	/**
+	 * @see	ThemeModuleType::getHTMLTag()
+	 */
+	public function getHTMLTag() {
+		return 'div';
+	}
+
 	// form methods
 	/**
 	 * @see	ThemeModuleType::readFormParameters()
