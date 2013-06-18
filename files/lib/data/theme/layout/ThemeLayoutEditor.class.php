@@ -167,9 +167,6 @@ class ThemeLayoutEditor extends ThemeLayout {
 		$compiler->setFormatter("compressed");
 		$compiler->setImportDir(array(WCF_DIR));
 
-		// get theme
-		$theme = Theme::getTheme($this->themeID);
-
 		// get theme stylesheet ids
 		$themeStylesheetIDs = $this->getAssignedThemeStylesheets();
 
@@ -188,7 +185,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		}
 
 		// compile code
-		$css = "/* stylesheet for the layout '".$this->title."' of the theme '".$theme->themeName."', generated on ".gmdate('r')." -- DO NOT EDIT */\n\n";
+		$css = "/* stylesheet for the layout '".$this->title."' of the theme with the id ".$this->themeID.", generated on ".gmdate('r')." -- DO NOT EDIT */\n\n";
 		try {
 			$css .= $compiler->compile($less);
 		}
@@ -197,7 +194,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		}
 
 		// write stylesheet
-		file_put_contents(WCF_DIR.'theme/theme'.$theme->themeID.'-'.$this->themeLayoutID.'.css', $css);
+		file_put_contents(WCF_DIR.'theme/theme'.$this->themeID.'-'.$this->themeLayoutID.'.css', $css);
 	}
 
 	/**
