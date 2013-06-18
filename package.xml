@@ -3,8 +3,8 @@
 	<packageinformation>
 		<packagename>Theme System</packagename>
 		<isunique>1</isunique>
-		<version>1.1.0 Alpha 2</version>
-		<date>2013-06-17</date>
+		<version>1.1.0 Beta 1</version>
+		<date>2013-06-18</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -14,7 +14,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.9">com.woltlab.wcf</requiredpackage>
-		<requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.wcfsolutions.wcf.codeMirror.tar">com.wcfsolutions.wcf.codeMirror</requiredpackage>
+		<requiredpackage minversion="1.0.0 Beta 1" file="requirements/com.wcfsolutions.wcf.codeMirror.tar">com.wcfsolutions.wcf.codeMirror</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
@@ -42,6 +42,10 @@
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
 		<acptemplates>acptemplates.tar</acptemplates>
+
+		<!-- languages -->
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
 	</instructions>
 
 	<instructions type="update" fromversion="1.0.0 RC 2">
