@@ -1,6 +1,6 @@
 <fieldset>
 	<legend>{lang}wcf.acp.theme.module.html.data{/lang}</legend>
-	
+
 	<div class="formElement{if $errorField == 'code'} formError{/if}" id="codeDiv">
 		<div class="formFieldLabel">
 			<label for="code">{lang}wcf.acp.theme.module.html.code{/lang}</label>
@@ -21,4 +21,5 @@
 	<script type="text/javascript">//<![CDATA[
 		inlineHelp.register('code');
 	//]]></script>
+	{include file='codeMirror' codeMirrorMode='smarty' codeMirrorSelector='code'}
 </fieldset>

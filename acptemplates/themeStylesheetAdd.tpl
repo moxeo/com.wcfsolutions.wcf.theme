@@ -103,6 +103,7 @@
 					<script type="text/javascript">//<![CDATA[
 						inlineHelp.register('lessCode');
 					//]]></script>
+					{include file='codeMirror' codeMirrorMode='less' codeMirrorSelector='lessCode'}
 
 					{if $additionalDataFields|isset}{@$additionalDataFields}{/if}
 				</fieldset>

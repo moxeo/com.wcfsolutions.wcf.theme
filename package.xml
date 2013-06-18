@@ -14,6 +14,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.9">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="1.0.0 Alpha 1" file="requirements/com.wcfsolutions.wcf.codeMirror.tar">com.wcfsolutions.wcf.codeMirror</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
@@ -40,6 +41,7 @@
 		<!-- files -->
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
 	</instructions>
 
 	<instructions type="update" fromversion="1.0.0 RC 2">
