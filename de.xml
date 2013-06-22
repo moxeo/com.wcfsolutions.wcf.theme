@@ -91,6 +91,8 @@
 		<item name="wcf.acp.theme.information"><![CDATA[Informationen]]></item>
 		<item name="wcf.acp.theme.layout.add"><![CDATA[Layout hinzufügen]]></item>
 		<item name="wcf.acp.theme.layout.add.success"><![CDATA[Das Layout wurde erfolgreich hinzugefügt.]]></item>
+		<item name="wcf.acp.theme.layout.copy"><![CDATA[Layout kopieren]]></item>
+		<item name="wcf.acp.theme.layout.copy.success"><![CDATA[Das Layout wurde erfolgreich kopiert.]]></item>
 		<item name="wcf.acp.theme.layout.data"><![CDATA[Daten]]></item>
 		<item name="wcf.acp.theme.layout.delete"><![CDATA[Layout löschen]]></item>
 		<item name="wcf.acp.theme.layout.delete.success"><![CDATA[Das Layout wurde erfolgreich gelöscht.]]></item>

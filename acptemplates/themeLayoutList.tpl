@@ -9,7 +9,7 @@
 </div>
 
 {if $deletedThemeLayoutID}
-	<p class="success">{lang}wcf.acp.theme.layout.delete.success{/lang}</p>	
+	<p class="success">{lang}wcf.acp.theme.layout.delete.success{/lang}</p>
 {/if}
 
 {if $themeOptions|count}
@@ -50,7 +50,7 @@
 			</div>
 		{/if}
 	</div>
-	
+
 	{if $themeLayouts|count}
 		<div class="border titleBarPanel">
 			<div class="containerHead"><h3>{lang}wcf.acp.theme.layout.view.count{/lang}</h3></div>
@@ -62,7 +62,7 @@
 						<th class="columnThemeLayoutID{if $sortField == 'themeLayoutID'} active{/if}" colspan="2"><div><a href="index.php?page=ThemeLayoutList&amp;themeID={@$themeID}&amp;pageNo={@$pageNo}&amp;sortField=themeLayoutID&amp;sortOrder={if $sortField == 'themeLayoutID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}">{lang}wcf.acp.theme.layout.themeLayoutID{/lang}{if $sortField == 'themeLayoutID'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 						<th class="columnThemeLayoutTitle{if $sortField == 'title'} active{/if}"><div><a href="index.php?page=ThemeLayoutList&amp;themeID={@$themeID}&amp;pageNo={@$pageNo}&amp;sortField=title&amp;sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}">{lang}wcf.acp.theme.layout.title{/lang}{if $sortField == 'title'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 						<th class="columnThemeLayoutThemeModules{if $sortField == 'themeModules'} active{/if}"><div><a href="index.php?page=ThemeLayoutList&amp;themeID={@$themeID}&amp;pageNo={@$pageNo}&amp;sortField=themeModules&amp;sortOrder={if $sortField == 'themeModules' && $sortOrder == 'ASC'}DESC{else}ASC{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}">{lang}wcf.acp.theme.layout.themeModules{/lang}{if $sortField == 'themeModules'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
-						
+
 						{if $additionalColumnHeads|isset}{@$additionalColumnHeads}{/if}
 					</tr>
 				</thead>
@@ -76,6 +76,7 @@
 									{else}
 										<a href="index.php?action=ThemeLayoutSetAsDefault&amp;themeLayoutID={@$themeLayout->themeLayoutID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/defaultS.png" alt="" title="{lang}wcf.acp.theme.layout.setAsDefault{/lang}" /></a>
 									{/if}
+									<a href="index.php?form=ThemeLayoutCopy&amp;themeLayoutID={@$themeLayout->themeLayoutID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/copyS.png" alt="" title="{lang}wcf.acp.theme.layout.copy{/lang}" /></a>
 									<a href="index.php?form=ThemeLayoutEdit&amp;themeLayoutID={@$themeLayout->themeLayoutID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/editS.png" alt="" title="{lang}wcf.acp.theme.layout.edit{/lang}" /></a>
 								{else}
 									<img src="{@RELATIVE_WCF_DIR}icon/defaultDisabledS.png" alt="" title="{lang}wcf.acp.theme.layout.default{/lang}" />
@@ -86,7 +87,7 @@
 								{else}
 									<img src="{@RELATIVE_WCF_DIR}icon/deleteDisabledS.png" alt="" title="{lang}wcf.acp.theme.layout.delete{/lang}" />
 								{/if}
-								
+
 								{if $additionalButtons.$themeLayout->themeLayoutID|isset}{@$additionalButtons.$themeLayout->themeLayoutID}{/if}
 							</td>
 							<td class="columnThemeLayoutID columnID">{@$themeLayout->themeLayoutID}</td>
@@ -98,17 +99,17 @@
 								{/if}
 							</td>
 							<td class="columnThemeModules columnNumbers"><a href="index.php?page=ThemeLayoutModuleAssignment&amp;themeLayoutID={@$themeLayout->themeLayoutID}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}">{@$themeLayout->themeModules}</a></td>
-							
+
 							{if $additionalColumns.$themeLayout->themeLayoutID|isset}{@$additionalColumns.$themeLayout->themeLayoutID}{/if}
 						</tr>
 					{/foreach}
 				</tbody>
 			</table>
 		</div>
-		
+
 		<div class="contentFooter">
 			{@$pagesLinks}
-			
+
 			{if $this->user->getPermission('admin.theme.canAddThemeLayout')}
 				<div class="largeButtons">
 					<ul><li><a href="index.php?form=ThemeLayoutAdd{if $themeID}&amp;themeID={@$themeID}{/if}&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/themeLayoutAddM.png" alt="" title="{lang}wcf.acp.theme.layout.add{/lang}" /> <span>{lang}wcf.acp.theme.layout.add{/lang}</span></a></li></ul>

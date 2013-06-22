@@ -57,7 +57,7 @@
 	{/if}
 {/if}
 
-{if $themeID || $action == 'edit'}
+{if $themeID || $action != 'add'}
 	<form method="post" action="index.php?form=ThemeLayout{@$action|ucfirst}">
 		<div class="border content">
 			<div class="container-1">

@@ -262,6 +262,30 @@ class ThemeLayoutEditor extends ThemeLayout {
 	}
 
 	/**
+	 * Copies this theme layout.
+	 *
+	 * @param	string		$title
+	 * @param	array		$themeStylesheetIDs
+	 */
+	public function copy($title, $themeStylesheetIDs) {
+		// create new theme layout
+		$themeLayout = self::create($this->themeID, $title, $themeStylesheetIDs, $this->packageID);
+
+		// copy theme module assignments
+		$sql = "SELECT	themeModuleID, themeModulePosition, showOrder
+			FROM	wcf".WCF_N."_theme_module_to_layout
+			WHERE	themeLayoutID = ".$this->themeLayoutID;
+		$result = WCF::getDB()->sendQuery($sql);
+		while ($row = WCF::getDB()->fetchArray($result)) {
+			// insert theme module assignment
+			$sql = "REPLACE INTO	wcf".WCF_N."_theme_module_to_layout
+						(themeModuleID, themeLayoutID, themeModulePosition, showOrder)
+				VALUES		(".$row['themeModuleID'].", ".$themeLayout->themeLayoutID.", '".escapeString($row['themeModulePosition'])."', ".$row['showOrder'].")";
+			WCF::getDB()->sendQuery($sql);
+		}
+	}
+
+	/**
 	 * Deletes all theme layouts with the given theme layout ids.
 	 *
 	 * @param	string		$themeLayoutIDs
