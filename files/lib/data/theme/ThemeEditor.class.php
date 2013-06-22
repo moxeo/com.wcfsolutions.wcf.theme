@@ -498,8 +498,10 @@ class ThemeEditor extends Theme {
 					foreach ($child['children'] as $author) {
 						switch ($author['name']) {
 							case 'authorname':
+								$data['authorName'] = $author['cdata'];
+								break;
 							case 'authorurl':
-								$data[$author['name']] = $author['cdata'];
+								$data['authorURL'] = $author['cdata'];
 								break;
 						}
 					}
