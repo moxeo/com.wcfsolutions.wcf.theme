@@ -278,7 +278,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		$result = WCF::getDB()->sendQuery($sql);
 		while ($row = WCF::getDB()->fetchArray($result)) {
 			// insert theme module assignment
-			$sql = "REPLACE INTO	wcf".WCF_N."_theme_module_to_layout
+			$sql = "INSERT INTO	wcf".WCF_N."_theme_module_to_layout
 						(themeModuleID, themeLayoutID, themeModulePosition, showOrder)
 				VALUES		(".$row['themeModuleID'].", ".$themeLayout->themeLayoutID.", '".escapeString($row['themeModulePosition'])."', ".$row['showOrder'].")";
 			WCF::getDB()->sendQuery($sql);
