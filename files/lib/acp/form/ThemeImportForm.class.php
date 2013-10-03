@@ -109,6 +109,8 @@ class ThemeImportForm extends ACPForm {
 
 		// reset cache
 		WCF::getCache()->clearResource('theme-'.PACKAGE_ID);
+		WCF::getCache()->clearResource('themeLayout-'.PACKAGE_ID);
+		WCF::getCache()->clearResource('themeModule-'.PACKAGE_ID);
 		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.templatePacks.php');
 		WCF::getCache()->clear(WCF_DIR.'cache', 'cache.templates-*.php');
 		$this->saved();
