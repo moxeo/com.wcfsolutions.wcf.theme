@@ -938,7 +938,7 @@ class ThemeEditor extends Theme {
 
 									$data['moduleAssignments'][$moduleAssignmentID]['themeModulePosition'] = $moduleAssignmentData['cdata'];
 									break;
-								case 'showOrder':
+								case 'showorder':
 									$data['moduleAssignments'][$moduleAssignmentID]['showOrder'] = intval($moduleAssignmentData['cdata']);
 									break;
 							}
