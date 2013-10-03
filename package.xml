@@ -14,7 +14,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.9">com.woltlab.wcf</requiredpackage>
-		<requiredpackage minversion="1.0.0 Beta 1" file="requirements/com.wcfsolutions.wcf.codeMirror.tar">com.wcfsolutions.wcf.codeMirror</requiredpackage>
+		<requiredpackage minversion="1.0.0 Beta 1">com.wcfsolutions.wcf.codeMirror</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
