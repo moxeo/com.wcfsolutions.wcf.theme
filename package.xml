@@ -4,7 +4,7 @@
 		<packagename>Theme System</packagename>
 		<isunique>1</isunique>
 		<version>1.1.0 Beta 2</version>
-		<date>2013-06-22</date>
+		<date>2013-10-03</date>
 	</packageinformation>
 
 	<authorinformation>
@@ -41,23 +41,7 @@
 		<!-- files -->
 		<files>files.tar</files>
 		<acptemplates>acptemplates.tar</acptemplates>
-
-		<!-- languages -->
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-	</instructions>
-
-	<instructions type="update" fromversion="1.0.0 RC 2">
-		<!-- files -->
-		<files>files.tar</files>
-		<templates>templates.tar</templates>
-		<acptemplates>acptemplates.tar</acptemplates>
 		<sql>update.sql</sql>
-
-		<!-- config -->
-		<groupoptions>groupoptions.xml</groupoptions>
-		<acpmenu>acpmenu.xml</acpmenu>
-		<thememoduletype>thememoduletype.xml</thememoduletype>
 
 		<!-- languages -->
 		<languages languagecode="de">de.xml</languages>

@@ -7,7 +7,7 @@ CREATE TABLE wcf1_theme (
 	themeDescription TEXT,
 	themeVersion VARCHAR(255) NOT NULL DEFAULT '',
 	themeDate CHAR(10) NOT NULL DEFAULT '0000-00-00',
-	dataLocation VARCHAR(255) NOT NULL DEFAULT '',
+	fileLocation VARCHAR(255) NOT NULL DEFAULT '',
 	copyright VARCHAR(255) NOT NULL DEFAULT '',
 	license VARCHAR(255) NOT NULL DEFAULT '',
 	authorName VARCHAR(255) NOT NULL DEFAULT '',
