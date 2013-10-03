@@ -915,7 +915,7 @@ class ThemeEditor extends Theme {
 					}
 				}
 				// module assignments
-				else if ($block['name'] == 'moduleAssignments') {
+				else if ($block['name'] == 'moduleassignments') {
 					foreach ($block['children'] as $moduleAssignment) {
 						$moduleAssignmentID = StringUtil::getRandomID();
 						$data['moduleAssignments'][$moduleAssignmentID] = array(
