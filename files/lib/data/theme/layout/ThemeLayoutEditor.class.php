@@ -164,7 +164,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		// import compiler
 		require_once(WCF_DIR.'lib/system/theme/3rdParty/lessc.inc.php');
 		$compiler = new lessc();
-		$compiler->setFormatter("compressed");
+		$compiler->setFormatter('compressed');
 		$compiler->setImportDir(array(WCF_DIR));
 
 		// get theme stylesheet ids
@@ -178,14 +178,19 @@ class ThemeLayoutEditor extends ThemeLayout {
 		$themeStylesheetList->sqlConditions = 'theme_stylesheet.themeStylesheetID IN ('.implode(',', $themeStylesheetIDs).')';
 		$themeStylesheetList->readObjects();
 
+		// get theme
+		require_once(WCF_DIR.'lib/data/theme/ThemeEditor.class.php');
+		$theme = new ThemeEditor($this->themeID, null, null, false);
+
 		// get less code
 		$less = '@import "theme/reset.less";';
+		$less .= '@fileLocation: "'.$theme->fileLocation.'/";';
 		foreach ($themeStylesheetList->getObjects() as $themeStylesheet) {
 			$less .= $themeStylesheet->lessCode;
 		}
 
 		// compile code
-		$css = "/* stylesheet for the layout '".$this->title."' of the theme with the id ".$this->themeID.", generated on ".gmdate('r')." -- DO NOT EDIT */\n\n";
+		$css = "/* stylesheet for the layout '".$this->title."' of the theme '".$theme->themeName."', generated on ".gmdate('r')." -- DO NOT EDIT */\n\n";
 		try {
 			$css .= $compiler->compile($less);
 		}
