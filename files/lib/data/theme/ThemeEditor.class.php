@@ -206,7 +206,15 @@ class ThemeEditor extends Theme {
 					$string .= "\t\t\t<cssclasses><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $themeModule->cssClasses) : $themeModule->cssClasses))."]]></cssclasses>\n";
 				}
 				$string .= "\t\t\t<type>".$themeModule->themeModuleType."</type>\n";
-				$string .= "\t\t\t<data><![CDATA[".StringUtil::escapeCDATA((CHARSET != 'UTF-8' ? StringUtil::convertEncoding(CHARSET, 'UTF-8', $themeModule->themeModuleData) : $themeModule->themeModuleData))."]]></data>\n";
+
+				// make sure all lines have unix endings
+				$themeModuleData = serialize(ArrayUtil::unifyNewlines(unserialize($themeModule->themeModuleData)));
+
+				if (CHARSET != 'UTF-8') {
+					$themeModuleData = StringUtil::convertEncoding(CHARSET, 'UTF-8', $themeModuleData);
+				}
+
+				$string .= "\t\t\t<data><![CDATA[".StringUtil::escapeCDATA($themeModuleData)."]]></data>\n";
 				$string .= "\t\t</module>\n";
 			}
 			$string .= "\t</modules>\n";
@@ -887,6 +895,7 @@ class ThemeEditor extends Theme {
 									if (CHARSET != 'UTF-8') {
 										$themeModuleData = StringUtil::convertEncoding('UTF-8', CHARSET, $themeModuleData);
 									}
+
 									if (($themeModuleData = @unserialize($themeModuleData)) === false) {
 										throw new SystemException("Data for module with the id '".$moduleID."' is invalid");
 									}
