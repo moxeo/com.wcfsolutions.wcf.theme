@@ -40,7 +40,7 @@ class ThemeAddForm extends ACPForm {
 	public $themeDescription = '';
 	public $themeVersion = '';
 	public $themeDate = '0000-00-00';
-	public $dataLocation = '';
+	public $fileLocation = '';
 	public $copyright = '';
 	public $license = '';
 	public $authorName = '';
@@ -76,7 +76,7 @@ class ThemeAddForm extends ACPForm {
 		if (isset($_POST['themeDescription'])) $this->themeDescription = StringUtil::trim($_POST['themeDescription']);
 		if (isset($_POST['themeVersion'])) $this->themeVersion = StringUtil::trim($_POST['themeVersion']);
 		if (isset($_POST['themeDate'])) $this->themeDate = StringUtil::trim($_POST['themeDate']);
-		if (isset($_POST['dataLocation'])) $this->dataLocation = StringUtil::trim($_POST['dataLocation']);
+		if (isset($_POST['fileLocation'])) $this->fileLocation = StringUtil::trim($_POST['fileLocation']);
 		if (isset($_POST['copyright'])) $this->copyright = StringUtil::trim($_POST['copyright']);
 		if (isset($_POST['license'])) $this->license = StringUtil::trim($_POST['license']);
 		if (isset($_POST['authorName'])) $this->authorName = StringUtil::trim($_POST['authorName']);
@@ -103,9 +103,9 @@ class ThemeAddForm extends ACPForm {
 		}
 
 		// data location
-		$this->dataLocation = ThemeEditor::getFilename($this->dataLocation);
-		if (empty($this->dataLocation)) {
-			throw new UserInputException('dataLocation');
+		$this->fileLocation = ThemeEditor::getFilename($this->fileLocation);
+		if (empty($this->fileLocation)) {
+			throw new UserInputException('fileLocation');
 		}
 	}
 
@@ -116,7 +116,7 @@ class ThemeAddForm extends ACPForm {
 		parent::save();
 
 		// save theme
-		$this->theme = ThemeEditor::create($this->themeName, $this->templatePackID, $this->themeDescription, $this->themeVersion, $this->themeDate, $this->dataLocation, $this->copyright, $this->license, $this->authorName, $this->authorURL);
+		$this->theme = ThemeEditor::create($this->themeName, $this->templatePackID, $this->themeDescription, $this->themeVersion, $this->themeDate, $this->fileLocation, $this->copyright, $this->license, $this->authorName, $this->authorURL);
 
 		// reset cache
 		WCF::getCache()->clearResource('theme-'.PACKAGE_ID);
@@ -124,7 +124,7 @@ class ThemeAddForm extends ACPForm {
 
 		// reset values
 		$this->themeID = 0;
-		$this->themeName = $this->themeDescription = $this->themeVersion = $this->dataLocation = $this->copyright = $this->license = $this->authorName = $this->authorURL = '';
+		$this->themeName = $this->themeDescription = $this->themeVersion = $this->fileLocation = $this->copyright = $this->license = $this->authorName = $this->authorURL = '';
 		$this->themeDate = '0000-00-00';
 
 		// show success message
@@ -145,7 +145,7 @@ class ThemeAddForm extends ACPForm {
 			'themeDescription' => $this->themeDescription,
 			'themeVersion' => $this->themeVersion,
 			'themeDate' => $this->themeDate,
-			'dataLocation' => $this->dataLocation,
+			'fileLocation' => $this->fileLocation,
 			'copyright' => $this->copyright,
 			'license' => $this->license,
 			'authorName' => $this->authorName,

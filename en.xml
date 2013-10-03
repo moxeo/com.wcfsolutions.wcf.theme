@@ -64,8 +64,6 @@
 		<item name="wcf.acp.theme.copyright"><![CDATA[Copyright]]></item>
 		<item name="wcf.acp.theme.copyright.description"><![CDATA[Enter the copyright of the theme here.]]></item>
 		<item name="wcf.acp.theme.data"><![CDATA[Data]]></item>
-		<item name="wcf.acp.theme.dataLocation"><![CDATA[Data folder]]></item>
-		<item name="wcf.acp.theme.dataLocation.description"><![CDATA[Enter the name of the data folder of the theme here.]]></item>
 		<item name="wcf.acp.theme.delete"><![CDATA[Delete]]></item>
 		<item name="wcf.acp.theme.delete.success"><![CDATA[The theme was deleted successfully.]]></item>
 		<item name="wcf.acp.theme.delete.sure"><![CDATA[Do you really want to delete this theme?]]></item>
@@ -81,6 +79,8 @@
 		<item name="wcf.acp.theme.export.filename.description"><![CDATA[Enter the filename of the theme to be exported.]]></item>
 		<item name="wcf.acp.theme.export.files"><![CDATA[Files]]></item>
 		<item name="wcf.acp.theme.exportButton"><![CDATA[Export]]></item>
+		<item name="wcf.acp.theme.fileLocation"><![CDATA[Data folder]]></item>
+		<item name="wcf.acp.theme.fileLocation.description"><![CDATA[Enter the name of the data folder of the theme here.]]></item>
 		<item name="wcf.acp.theme.import"><![CDATA[Import theme]]></item>
 		<item name="wcf.acp.theme.import.source"><![CDATA[Source]]></item>
 		<item name="wcf.acp.theme.import.success"><![CDATA[The theme was imported successfully.]]></item>

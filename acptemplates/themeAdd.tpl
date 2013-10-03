@@ -12,7 +12,7 @@
 {/if}
 
 {if $success|isset}
-	<p class="success">{lang}wcf.acp.theme.{@$action}.success{/lang}</p>	
+	<p class="success">{lang}wcf.acp.theme.{@$action}.success{/lang}</p>
 {/if}
 
 <div class="contentHeader">
@@ -26,7 +26,7 @@
 		<div class="container-1">
 			<fieldset>
 				<legend>{lang}wcf.acp.theme.data{/lang}</legend>
-				
+
 				<div class="formElement{if $errorField == 'themeName'} formError{/if}" id="themeNameDiv">
 					<div class="formFieldLabel">
 						<label for="themeName">{lang}wcf.acp.theme.themeName{/lang}</label>
@@ -46,7 +46,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('themeName');
 				//]]></script>
-				
+
 				<div class="formElement" id="templatePackIDDiv">
 					<div class="formFieldLabel">
 						<label for="templatePackID">{lang}wcf.acp.theme.templatePackID{/lang}</label>
@@ -64,33 +64,33 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('templatePackID');
 				//]]></script>
-				
-				<div class="formElement{if $errorField == 'dataLocation'} formError{/if}" id="dataLocationDiv">
+
+				<div class="formElement{if $errorField == 'fileLocation'} formError{/if}" id="fileLocationDiv">
 					<div class="formFieldLabel">
-						<label for="dataLocation">{lang}wcf.acp.theme.dataLocation{/lang}</label>
+						<label for="fileLocation">{lang}wcf.acp.theme.fileLocation{/lang}</label>
 					</div>
 					<div class="formField">
-						<input type="text" class="inputText" id="dataLocation" name="dataLocation" value="{$dataLocation}" />
-						{if $errorField == 'dataLocation'}
+						<input type="text" class="inputText" id="fileLocation" name="fileLocation" value="{$fileLocation}" />
+						{if $errorField == 'fileLocation'}
 							<p class="innerError">
 								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
 							</p>
 						{/if}
 					</div>
-					<div class="formFieldDesc hidden" id="dataLocationHelpMessage">
-						{lang}wcf.acp.theme.dataLocation.description{/lang}
+					<div class="formFieldDesc hidden" id="fileLocationHelpMessage">
+						{lang}wcf.acp.theme.fileLocation.description{/lang}
 					</div>
 				</div>
 				<script type="text/javascript">//<![CDATA[
-					inlineHelp.register('dataLocation');
+					inlineHelp.register('fileLocation');
 				//]]></script>
-				
+
 				{if $additionalDataFields|isset}{@$additionalDataFields}{/if}
 			</fieldset>
-			
+
 			<fieldset>
 				<legend>{lang}wcf.acp.theme.information{/lang}</legend>
-				
+
 				<div class="formElement" id="themeDescriptionDiv">
 					<div class="formFieldLabel">
 						<label for="themeDescription">{lang}wcf.acp.theme.themeDescription{/lang}</label>
@@ -105,7 +105,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('themeDescription');
 				//]]></script>
-				
+
 				<div class="formElement" id="themeVersionDiv">
 					<div class="formFieldLabel">
 						<label for="themeVersion">{lang}wcf.acp.theme.themeVersion{/lang}</label>
@@ -120,7 +120,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('themeVersion');
 				//]]></script>
-				
+
 				<div class="formElement" id="themeDateDiv">
 					<div class="formFieldLabel">
 						<label for="themeDate">{lang}wcf.acp.theme.themeDate{/lang}</label>
@@ -135,7 +135,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('themeDate');
 				//]]></script>
-				
+
 				<div class="formElement" id="copyrightDiv">
 					<div class="formFieldLabel">
 						<label for="copyright">{lang}wcf.acp.theme.copyright{/lang}</label>
@@ -150,7 +150,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('copyright');
 				//]]></script>
-				
+
 				<div class="formElement" id="licenseDiv">
 					<div class="formFieldLabel">
 						<label for="license">{lang}wcf.acp.theme.license{/lang}</label>
@@ -165,7 +165,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('license');
 				//]]></script>
-				
+
 				<div class="formElement" id="authorNameDiv">
 					<div class="formFieldLabel">
 						<label for="authorName">{lang}wcf.acp.theme.authorName{/lang}</label>
@@ -180,7 +180,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('authorName');
 				//]]></script>
-				
+
 				<div class="formElement" id="authorURLDiv">
 					<div class="formFieldLabel">
 						<label for="authorURL">{lang}wcf.acp.theme.authorURL{/lang}</label>
@@ -195,14 +195,14 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('authorURL');
 				//]]></script>
-				
+
 				{if $additionalInformationFields|isset}{@$additionalInformationFields}{/if}
 			</fieldset>
-				
+
 			{if $additionalFields|isset}{@$additionalFields}{/if}
 		</div>
 	</div>
-		
+
 	<div class="formSubmit">
 		<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 		<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />

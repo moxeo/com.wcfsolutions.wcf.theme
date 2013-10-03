@@ -48,7 +48,7 @@ class ThemeEditForm extends ThemeAddForm {
 			$this->themeDescription = $this->theme->themeDescription;
 			$this->themeVersion = $this->theme->themeVersion;
 			$this->themeDate = $this->theme->themeDate;
-			$this->dataLocation = $this->theme->dataLocation;
+			$this->fileLocation = $this->theme->fileLocation;
 			$this->copyright = $this->theme->copyright;
 			$this->license = $this->theme->license;
 			$this->authorName = $this->theme->authorName;
@@ -63,7 +63,7 @@ class ThemeEditForm extends ThemeAddForm {
 		AbstractForm::save();
 
 		// update theme
-		$this->theme->update($this->themeName, $this->templatePackID, $this->themeDescription, $this->themeVersion, $this->themeDate, $this->dataLocation, $this->copyright, $this->license, $this->authorName, $this->authorURL);
+		$this->theme->update($this->themeName, $this->templatePackID, $this->themeDescription, $this->themeVersion, $this->themeDate, $this->fileLocation, $this->copyright, $this->license, $this->authorName, $this->authorURL);
 
 		// reset cache
 		WCF::getCache()->clearResource('theme-'.PACKAGE_ID);
