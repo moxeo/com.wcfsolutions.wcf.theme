@@ -108,6 +108,7 @@ class ThemeEditor extends Theme {
 		require_once(WCF_DIR.'lib/data/theme/stylesheet/ThemeStylesheetList.class.php');
 		$themeStylesheetList = new ThemeStylesheetList();
 		$themeStylesheetList->sqlLimit = 0;
+		$themeStylesheetList->sqlOrderBy = 'theme_stylesheet.themeStylesheetID';
 		$themeStylesheetList->sqlConditions = 'theme_stylesheet.themeID = '.$this->themeID;
 		$themeStylesheetList->readObjects();
 
