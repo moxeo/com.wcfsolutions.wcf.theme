@@ -183,7 +183,7 @@ class ThemeLayoutEditor extends ThemeLayout {
 		$theme = new ThemeEditor($this->themeID, null, null, false);
 
 		// get less code
-		$less = '@import "theme/reset.less";';
+		$less = '@import "theme/reset.less";'; // todo: move this?
 		$less .= '@fileLocation: "'.$theme->fileLocation.'/";';
 		foreach ($themeStylesheetList->getObjects() as $themeStylesheet) {
 			$less .= $themeStylesheet->lessCode;

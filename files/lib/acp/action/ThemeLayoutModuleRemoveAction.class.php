@@ -72,7 +72,7 @@ class ThemeLayoutModuleRemoveAction extends AbstractThemeLayoutAction {
 		$this->themeLayout->removeThemeModule($this->themeModule->themeModuleID, $this->themeModulePosition, $this->showOrder);
 
 		// reset cache
-		ThemeLayoutEditor::clearCache();
+		ThemeLayoutEditor::clearCache(); // todo: clear other caches?
 		$this->executed();
 
 		// forward to list page

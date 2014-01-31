@@ -90,6 +90,7 @@ class ThemeStylesheetAddForm extends ACPForm {
 		$compiler->setImportDir(array(WCF_DIR));
 
 		try {
+			// todo: check this
 			$compiler->compile($this->lessCode);
 		}
 		catch (Exception $e) {
