@@ -1,6 +1,7 @@
-{foreach from=$themeModules item=themeModule}
+{foreach from=$themeModules key=themeModuleID item=themeModule}
 	{assign var=themeModuleType value=$themeModule->getThemeModuleType()}
-	<{@$themeModuleType->getHTMLTag()} class="module {@$themeModule->themeModuleType}Module{if $themeModule->cssClasses} {$themeModule->cssClasses}{/if}"{if $themeModule->cssID} id="{$themeModule->cssID}"{/if}>
-		{@$themeModuleType->getContent($themeModule, $themeModulePosition, $additionalData)}
-	</{@$themeModuleType->getHTMLTag()}>
+	<{@$themeModules[$themeModuleID]->getThemeModuleType()->getHTMLTag()} class="module {@$themeModule->themeModuleType}Module{if $themeModule->cssClasses} {$themeModule->cssClasses}{/if}"{if $themeModule->cssID} id="{$themeModule->cssID}"{/if}>
+		{capture assign='content'}{@$themeModuleType->getContent($themeModule, $themeModulePosition, $additionalData)}{/capture}
+		{@$content}
+	</{@$themeModules[$themeModuleID]->getThemeModuleType()->getHTMLTag()}>
 {/foreach}
