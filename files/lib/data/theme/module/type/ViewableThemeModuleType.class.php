@@ -67,10 +67,8 @@ abstract class ViewableThemeModuleType extends AbstractThemeModuleType {
 	 * @see	ThemeModuleType::hasContent()
 	 */
 	public function hasContent(ThemeModule $themeModule, $themeModulePosition, $additionalData) {
-		if ($this->pageElementType != 'action' && isset($this->pageElements[$themeModule->themeModuleID]) && $this->pageElements[$themeModule->themeModuleID]->getContent()) {
-			return true;
-		}
-		return false;
+		return ($this->pageElementType != 'action' && isset($this->pageElements[$themeModule->themeModuleID])
+			&& $this->pageElements[$themeModule->themeModuleID]->getContent());
 	}
 
 	/**
