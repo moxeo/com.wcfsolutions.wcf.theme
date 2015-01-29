@@ -18,7 +18,7 @@ class ThemeLayoutManager {
 	 *
 	 * @var	ThemeLayout
 	 */
-	protected static $themeLayout = null;
+	private static $themeLayout = null;
 
 	/**
 	 * Changes the active theme layout.

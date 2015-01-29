@@ -19,7 +19,7 @@ abstract class AbstractFormElement extends AbstractForm implements PageElement {
 	 *
 	 * @var	string
 	 */
-	public $content = '';
+	private $content = '';
 
 	/**
 	 * @see	Page::show()
@@ -67,6 +67,15 @@ abstract class AbstractFormElement extends AbstractForm implements PageElement {
 			'identifier' => $this->getIdentifier(),
 			'formElementInputTag' => '<input type="hidden" name="identifier" value="'.$this->getIdentifier().'" />'
 		));
+	}
+
+	/**
+	 * Sets the content (i.e. HTML output) of this form element.
+	 *
+	 * @param	string		$content	The content (i.e. HTML output) of this form element.
+	 */
+	public function setContent($content) {
+		$this->content = $content;
 	}
 
 	/**

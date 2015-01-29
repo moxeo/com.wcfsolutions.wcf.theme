@@ -18,7 +18,7 @@ class Theme extends DatabaseObject {
 	 *
 	 * @var	array<Theme>
 	 */
-	protected static $themes = null;
+	private static $themes = null;
 
 	/**
 	 * Creates a new Theme object.

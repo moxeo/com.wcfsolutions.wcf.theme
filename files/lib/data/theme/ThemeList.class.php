@@ -19,7 +19,7 @@ class ThemeList extends DatabaseObjectList {
 	 *
 	 * @var array<Theme>
 	 */
-	public $themes = array();
+	private $themes = array();
 
 	/**
 	 * @see	DatabaseObjectList::countObjects()

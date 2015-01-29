@@ -48,7 +48,7 @@ class ThemeLayout extends DatabaseObject {
 	 *
 	 * @var	array
 	 */
-	public static $themeModulePositions = array('header', 'left', 'main', 'right', 'footer');
+	private static $themeModulePositions = array('header', 'left', 'main', 'right', 'footer');
 
 	/**
 	 * Creates a new ThemeLayout object.
@@ -111,8 +111,8 @@ class ThemeLayout extends DatabaseObject {
 	 * @return	array<ThemeModule>
 	 */
 	public function getModules($themeModulePosition, $additionalData = array()) {
-		if (self::$themeModules === null) self::$themeModules = WCF::getCache()->get('themeModule-'.PACKAGE_ID);
-		if (self::$themeModuleToLayouts === null) self::$themeModuleToLayouts = WCF::getCache()->get('themeLayout-'.PACKAGE_ID, 'modules');
+		if (self::$themeModules === null) self::$themeModules = WCF::getCache()->get('themeModule-' . PACKAGE_ID);
+		if (self::$themeModuleToLayouts === null) self::$themeModuleToLayouts = WCF::getCache()->get('themeLayout-' . PACKAGE_ID, 'modules');
 
 		$themeModules = array();
 		if (isset(self::$themeModuleToLayouts[$this->themeLayoutID][$themeModulePosition])) {
@@ -175,6 +175,25 @@ class ThemeLayout extends DatabaseObject {
 		}
 
 		return $themeLayouts[$themeLayoutID];
+	}
+
+	/**
+	 * Returns all available positions in which theme modules can be placed.
+	 *
+	 * @return	array		All available positions in which theme modules can be placed.
+	 */
+	public static function getThemeModulePositions() {
+		return self::$themeModulePositions;
+	}
+
+	/**
+	 * Sets all available positions in which theme modules can be placed.
+	 *
+	 * @param        array		$themeModulePositions	All available positions in which theme modules can be
+	 *                                           		placed.
+	 */
+	public static function setThemeModulePositions($themeModulePositions) {
+		self::$themeModulePositions = $themeModulePositions;
 	}
 }
 ?>

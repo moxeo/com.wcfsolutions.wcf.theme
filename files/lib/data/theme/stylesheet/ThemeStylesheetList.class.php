@@ -19,7 +19,7 @@ class ThemeStylesheetList extends DatabaseObjectList {
 	 *
 	 * @var array<ThemeStylesheet>
 	 */
-	public $themeStylesheets = array();
+	private $themeStylesheets = array();
 
 	/**
 	 * @see	DatabaseObjectList::countObjects()

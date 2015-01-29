@@ -19,7 +19,7 @@ class AbstractThemeModuleType implements ThemeModuleType {
 	 *
 	 * @var	array
 	 */
-	public $formData = array();
+	protected $formData = array();
 
 	// display methods
 	/**

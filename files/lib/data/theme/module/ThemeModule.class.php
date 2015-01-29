@@ -19,28 +19,28 @@ class ThemeModule extends DatabaseObject {
 	 *
 	 * @var	array
 	 */
-	public static $themeModuleTypes = null;
+	private static $themeModuleTypes = null;
 
 	/**
 	 * list of available theme module types
 	 *
 	 * @var	array<ThemeModuleType>
 	 */
-	public static $availableThemeModuleTypes = null;
+	private static $availableThemeModuleTypes = null;
 
 	/**
 	 * list of theme modules
 	 *
 	 * @var	array<ThemeModule>
 	 */
-	protected static $themeModules = null;
+	private static $themeModules = null;
 
 	/**
 	 * list of theme module options
 	 *
 	 * @var	array
 	 */
-	protected $themeModuleOptions = null;
+	private $themeModuleOptions = null;
 
 	/**
 	 * Creates a new ThemeModule object.

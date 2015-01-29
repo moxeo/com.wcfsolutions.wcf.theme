@@ -19,7 +19,7 @@ class ThemeLayoutList extends DatabaseObjectList {
 	 *
 	 * @var array<ThemeLayout>
 	 */
-	public $themeLayouts = array();
+	private $themeLayouts = array();
 
 	/**
 	 * @see	DatabaseObjectList::countObjects()

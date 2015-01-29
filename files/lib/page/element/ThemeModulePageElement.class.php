@@ -19,21 +19,21 @@ abstract class ThemeModulePageElement extends AbstractPageElement {
 	 *
 	 * @var	ThemeModule
 	 */
-	public $themeModule = null;
+	private $themeModule = null;
 
 	/**
 	 * theme module position
 	 *
 	 * @var	string
 	 */
-	public $themeModulePosition = 'main';
+	private $themeModulePosition = 'main';
 
 	/**
 	 * list of additional data
 	 *
 	 * @var	array
 	 */
-	public $additionalData = array();
+	private $additionalData = array();
 
 	/**
 	 * Creates a new ThemeModulePageElement object.
@@ -68,6 +68,34 @@ abstract class ThemeModulePageElement extends AbstractPageElement {
 			'themeModulePosition' => $this->themeModulePosition,
 			'additionalData' => $this->additionalData
 		));
+	}
+
+	/**
+	 * Returns the theme module object of this page element.
+	 *
+	 * @return	ThemeModule	The theme module object of this page element.
+	 */
+	public function getThemeModule() {
+		return $this->themeModule;
+	}
+
+	/**
+	 * Returns the theme module position of this page element.
+	 *
+	 * @see		ThemeLayout::getThemeModulePositions()		All possible theme module positions.
+	 * @return	string						The theme module position of this page element.
+	 */
+	public function getThemeModulePosition() {
+		return $this->themeModulePosition;
+	}
+
+	/**
+	 * Returns additional data of this page element.
+	 *
+	 * @return	array		The additional data of this page element.
+	 */
+	public function getAdditionalData() {
+		return $this->additionalData;
 	}
 }
 ?>

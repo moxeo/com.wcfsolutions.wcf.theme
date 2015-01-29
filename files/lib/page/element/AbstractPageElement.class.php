@@ -19,7 +19,7 @@ abstract class AbstractPageElement extends MultipleLinkPage implements PageEleme
 	 *
 	 * @var	string
 	 */
-	public $content = '';
+	private $content = '';
 
 	/**
 	 * @see	Page::show()
@@ -52,6 +52,15 @@ abstract class AbstractPageElement extends MultipleLinkPage implements PageEleme
 		WCF::getTPL()->assign(array(
 			'identifier' => $this->getIdentifier()
 		));
+	}
+
+	/**
+	 * Sets the content (i.e. HTML output) of this page element.
+	 *
+	 * @param	string		$content	The content (i.e. HTML output) of this page element.
+	 */
+	public function setContent($content) {
+		$this->content = $content;
 	}
 
 	/**
