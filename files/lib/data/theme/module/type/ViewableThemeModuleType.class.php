@@ -18,28 +18,32 @@ abstract class ViewableThemeModuleType extends AbstractThemeModuleType {
 	 *
 	 * @var	array<PageElement>
 	 */
-	public $pageElements = array();
+	protected $pageElements = array();
 
 	/**
-	 * page element
+	 * Returns the name of the page element to be displayed.
 	 *
-	 * @var	string
+	 * @return	string		The name of the page element to be displayed.
 	 */
-	public $pageElement = '';
+	public abstract function getPageElement();
 
 	/**
-	 * page element type (page/form/action)
+	 * Returns the type of the page element.
 	 *
-	 * @var	string
+	 * @return	string		The page element type (either page, form or action).
 	 */
-	public $pageElementType = 'page';
+	public function getPageElementType() {
+		return 'page';
+	}
 
 	/**
-	 * page element dir
+	 * Returns the absolute directory where the page element is located in.
 	 *
-	 * @var	string
+	 * @return	string		The absolute directory where the page element is located in.
 	 */
-	public $pageElementDir = WCF_DIR;
+	public function getPageElementDir() {
+		return WCF_DIR;
+	}
 
 	/**
 	 * @see	ThemeModuleType::cache()
